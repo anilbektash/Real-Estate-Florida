@@ -1,0 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=Magra);
+
+h1{ font: 32px  'Magra',Arial, Helvetica, sans-serif; }
+h2{ font: 24px  'Magra',Arial, Helvetica, sans-serif;}
+h3{ font: 20px  'Magra',Arial, Helvetica, sans-serif;}
+h4{ font: 18px  'Magra',Arial, Helvetica, sans-serif;}
+h5{ font: 16px  'Magra',Arial, Helvetica, sans-serif;}
+h6{ font: 12px  'Magra',Arial, Helvetica, sans-serif;}
+.advancesearch-head-home h3{ font-family: 'Magra',Arial, Helvetica, sans-serif; }
+.property-title{ font-family: 'Magra',Arial, Helvetica, sans-serif; }
+.post-title{ font-family: 'Magra',Arial, Helvetica, sans-serif; }
+.grid-col-head{ font-family: 'Magra',Arial, Helvetica, sans-serif; }
+.accordian li h5,
+.advancesearch-head h3{ font-family: 'Magra',Arial, Helvetica, sans-serif; }

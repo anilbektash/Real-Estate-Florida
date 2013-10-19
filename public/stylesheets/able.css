@@ -1,0 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=Abel);
+
+h1{ font: 32px  'Abel',Arial, Helvetica, sans-serif; }
+h2{ font: 24px  'Abel',Arial, Helvetica, sans-serif;}
+h3{ font: 20px  'Abel',Arial, Helvetica, sans-serif;}
+h4{ font: 18px  'Abel',Arial, Helvetica, sans-serif;}
+h5{ font: 16px  'Abel',Arial, Helvetica, sans-serif;}
+h6{ font: 12px  'Abel',Arial, Helvetica, sans-serif;}
+.advancesearch-head-home h3{ font-family: 'Abel',Arial, Helvetica, sans-serif; }
+.property-title{ font-family: 'Abel',Arial, Helvetica, sans-serif; }
+.post-title{ font-family: 'Abel',Arial, Helvetica, sans-serif; }
+.grid-col-head{ font-family: 'Abel',Arial, Helvetica, sans-serif; }
+.accordian li h5,
+.advancesearch-head h3{ font-family: 'Abel',Arial, Helvetica, sans-serif; }
