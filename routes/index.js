@@ -1,8 +1,8 @@
 
 /*
- * GET home page.
+ * GET index file
  */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+exports.indexfunction = function(req, res){
+	res.render('index',{sitename: 'Isola'});
 };
