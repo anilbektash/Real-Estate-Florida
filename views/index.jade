@@ -22,43 +22,8 @@ head
     //
        Hearder 
     #header-wrapper
-      .bg-switcher
-        span.open-btn.closed
-        ul.backgs
-          li.bgs1  
-          li.bgs2  
-          li.bgs3  
-          li.bgs4  
-          li.bgs5  
-          li.bgs6  
-          li.bgs7  
-          li.bgs8  
-          li.bgs9  
-          li.bgs10  
-          li.bgs11  
-          li.bgs12  
-          li.bgs13  
-          li.bgs14  
-          li.bgs15  
-          li.bgs16  
-          li.bgs17  
-          li.bgs18  
-        hr
-        form(action='#')
-          p
-            select#cfont(name='changeFont')
-              option(value='droid') Droid Serif
-              option(value='magra') Magra
-              option(value='CreteRound') Crete Round
-              option(value='bitter400') Bitter
-              option(value='tenorsans400') Tenor Sans
-              option(value='alfaslab') Alfa Slab One
-              option(value='signika') Signika Negative
-              option(value='able') Abel
-              option(value='chivo') Chivo
-              option(value='mavin') Maven Pro
       .header
-        a(href='index.html')
+        a(href='index')
           img.logo(src='images/logo1.png', alt='')
         ul.social-nav
           li.twitter
@@ -79,30 +44,9 @@ head
         .nav-container
           ul.main-nav
             li.active
-              a(href='index.html') Home
+              a(href='index') Home
             li
-              a.dd(href='index.html') Sliders
-              ul
-                li
-                  a(href='index.html') Simple Slider
-                li
-                  a(href='locality-accordionslider.html') Accordion Slider
-                li
-                  a(href='locality-thumbslider.html') Thumb Slider
-            li
-              a(href='listing.html') Listing
-            li
-              a(href='property-single.html') Property
-            li
-              a(href='blog.html') Blog
-              li
-                a(href='single.html') Post
-              li
-                a(href='fullwidth.html') Full Width
-                li
-                  a(href='generic-elements.html') Features
-                li
-                  a(href='contact.html') Contact Us
+              a(href='contact') Contact Us
           .seach-wrapper
             form#searchform(method='get', action='')
               p
@@ -111,7 +55,7 @@ head
                 input#searchsubmit.submit-search(type='submit', name='submit', value='')
     //
        HEADER WRAPPER...................................................................................... CLOSED 
-    #wrapper clearfix
+    #wrapper
       .container.clearfix
         #slider-wrapper
           .slider-container
@@ -365,27 +309,13 @@ head
         .bottom-bar
           ul.footer-nav
             li.active
-              a(href='index.html') Home
+              a(href='index') Home
             li
-              a.dd(href='listing.html') All Properties
+              a(href='signin') Sign In
             li
-              a.dd(href='blog.html') News
-            li
-              a(href='fullwidth.html') Full Width
-            li
-              a(href='generic-elements.html') Generic Elements
-            li
-              a(href='contact.html') Contact Us
+              a(href='contact') Contact Us
           a(href='#')
-            img.logo-footer(src='images/footer-logo.png', alt='Locatlity')
-          .copy-right-wrapper
-            p.developed-by
-              | Developed by
-              a(href='http://www.960development.com/') 960developement
-              | and Designed by
-              a(href='http://www.themedesigner.in/') Sunil joshi
-            p.copy-right
-              | Copyright© 2011. All Rights Reserved by Locality Real Estate
+            img.logo-footer(src='images/footer-logo.png', alt='Locality')
       //
          BOTOMBAR CLOSED 
     //

@@ -66,6 +66,7 @@ app.get('/signin', signin.signinFunction);
 app.get('/contact', contact.contactFunction);
 app.get('/admin', admin.adminFunction);
 app.get('/', index.indexFunction);
+app.get('/index', index.indexFunction);
 app.get('/listing', listing.listingFunction);
 app.get('/property-single', propertySingle.propertysingleFunction);
 app.get('/blog', blog.blogFunction);
