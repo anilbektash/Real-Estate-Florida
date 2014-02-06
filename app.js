@@ -16,12 +16,12 @@ var stochator   = require('stochasm');
 var update    = require('./query/update');
 var select    = require('./query/select');
 var insert    = require('./query/insert');
-var config    = require('./config');
 /*-----------------Route Handlers-------------------------------*/
 var index       = require('./routes/index');
 var signin      = require('./routes/signin');
 var contact     = require('./routes/contact');
 var admin    = require('./routes/admin');
+var config      = require('./config.js');
 //express application
 var app         = express();
 var date        = new Date();
