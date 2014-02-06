@@ -3,6 +3,6 @@
  * GET index file
  */
 
-exports.indexfunction = function(req, res){
+exports.indexFunction = function(req, res){
 	res.render('index',{sitename: 'Isola'});
 };

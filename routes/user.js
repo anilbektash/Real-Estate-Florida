@@ -1,8 +1,17 @@
 
 /*
- * GET users listing.
+ * GET index file
  */
 
-exports.list = function(req, res){
-  res.send("respond with a resource");
+exports.settingsFunction = function(req, res){
+	res.render('settings');
 };
+
+/*
+exports.indexfunction = function(req, res){
+	res.render('index',{
+			sample_link_1:'http://google.com',
+			sample_link_2: 'http://facebook.com'
+	});
+};
+*/

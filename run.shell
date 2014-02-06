@@ -1,0 +1,11 @@
+python schema.py;
+echo "The database 'florida' created";
+python create.py;
+echo "Tables are created and set";
+mysql --user=root --password=root florida < insert.sql ;
+echo "Insert User DONE";
+rm -rf public/users; 
+echo "Remove files OK.";
+cp -r constantuser/* public/ ;
+echo "Copy files OK.";
+node app.js;

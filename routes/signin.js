@@ -3,6 +3,6 @@
  * GET home page.
  */
 
-exports.signinfunction = function(req, res){
+exports.signinFunction = function(req, res){
   res.render('signin');
 };
