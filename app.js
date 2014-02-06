@@ -22,6 +22,9 @@ var signin      = require('./routes/signin');
 var contact     = require('./routes/contact');
 var admin    = require('./routes/admin');
 var config      = require('./config.js');
+var listing = require('./routes/listing');
+var propertySingle = require('./routes/property-single');
+var blog = require('./routes/blog');
 //express application
 var app         = express();
 var date        = new Date();
@@ -63,6 +66,10 @@ app.get('/signin', signin.signinFunction);
 app.get('/contact', contact.contactFunction);
 app.get('/admin', admin.adminFunction);
 app.get('/', index.indexFunction);
+app.get('/listing', listing.listingFunction);
+app.get('/property-single', propertySingle.propertysingleFunction);
+app.get('/blog', blog.blogFunction);
+
 /*---------------------The server itself and the socket---------------------------*/
 var server = http.createServer(app);
 
