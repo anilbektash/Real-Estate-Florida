@@ -1,4 +1,4 @@
-RealEstateV1.1
+Real Estate Web Application for Florida Residents
 ==============
 
-Erkan Bey'in istekleriyle ilgili çalışmalar
+This projects servers easing the process of gathering intellectual of the residentials within the Florida borders. The project continues on supervision of a mighty boss and some junior software programmers.
