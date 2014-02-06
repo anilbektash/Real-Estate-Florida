@@ -7,7 +7,7 @@ var express     = require('express');
 var http        = require('http');
 var path        = require('path');
 var socketio    = require('socket.io');
-var check       = require('validator').check;
+var check       = require('validator');
 var sanitize    = require('validator').sanitize;
 var mkdirp      = require('mkdirp');
 var fs          = require('fs-extra');
@@ -16,6 +16,7 @@ var stochator   = require('stochasm');
 var update    = require('./query/update');
 var select    = require('./query/select');
 var insert    = require('./query/insert');
+var remove    = require('./query/remove');
 /*-----------------Route Handlers-------------------------------*/
 var index       = require('./routes/index');
 var signin      = require('./routes/signin');
@@ -98,14 +99,13 @@ socket.sockets.on('connection', function (socket){
     socket.on('socket-login', function (data) {
         console.log("User mail or nick (to be checked):" + data.email);
         console.log("User pass  (to be checked):" + data.password);
-        try{
-            check(data.email).len(6, 64).isEmail();
+        if(check.isEmail(data.email) == true){
             try{
-                database.email_ExistsFunc(data.email, function ifexists(isExist){
+                select.email_ExistsFunc(data.email, function ifexists(isExist){
                     if(isExist == true){
-                        database.passWithEmail(data.email, data.password, function enter(isOkay){
+                        select.passWithEmail(data.email, data.password, function enter(isOkay){
                             if(isOkay == true){
-                                database.selectWithEmail(data.email, function getResults(result){
+                                select.selectWithEmail(data.email, function getResults(result){
                                     console.log("Results: " + result);
                                     if(result !== undefined && result.length !== 0){
                                         socket.emit("socket-validate", {id: result[0].id, first_name: result[0].name, last_name: result[0].surname,  email: result[0].email, value: "true"});
@@ -127,7 +127,7 @@ socket.sockets.on('connection', function (socket){
                 console.log(err);
             }
         }
-        catch(error){
+        else{
             socket.emit("socket-validate", {message: "Please check your email", value: "false"});
         }
     });
