@@ -8,6 +8,22 @@ head
     meta(name='author', content='')
     link(rel='shortcut icon', href='../../assets/ico/favicon.ico')
     title Signin Template for Bootstrap
+    //socketler icin
+    script(src='js/sigin.js')
+    script(src='/socket.io/socket.io.js')
+    script
+      var socket = io.connect('http://localhost');
+      function gonder(var1,var2)
+      {
+      socket.emit('socket-login' , {email:var1,password:var2});
+      }
+    script(type='text/javascript')
+      function login()
+      {
+      var var1 = document.getElementById('email').value;
+      var var2 = document.getElementById('password').value;
+      gonder(var1,var2);
+      }
     //Bootstrap core CSS 
     link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
     //
@@ -24,14 +40,14 @@ head
       script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
   body
     .container
-      form.form-signin(role='form')
+      div.form-signin
         h2.form-signin-heading Please sign in
-        input.form-control(type='email', placeholder='Email address', required='required', autofocus='autofocus')
-        input.form-control(type='password', placeholder='Password', required='required')
+        input.form-control(type='email', placeholder='Email address', required='required', autofocus='autofocus' , id='email')
+        input.form-control(type='password', placeholder='Password', required='required' , id='password')
         label.checkbox
           input(type='checkbox', value='remember-me')
           | Remember me
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+        button.btn.btn-lg.btn-primary.btn-block(onclick='javascript:login()') Sign in
     //
        /container 
     //
