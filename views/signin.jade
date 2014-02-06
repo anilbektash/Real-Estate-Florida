@@ -17,6 +17,20 @@ head
       {
       socket.emit('socket-login' , {email:var1,password:var2});
       }
+      socket.on('socket-validate',function(data){
+      if(data.value == "true")
+      {
+      localStorage['isim'] = data.first_name;
+      localStorage['soyisim'] = data.last_name;
+      localStorage['mail'] = data.email;
+      localStorage['id']=data.id;
+      document.location.href = "admin";
+      }
+      else
+      {
+      alert(data.message);
+      }
+      });
     script(type='text/javascript')
       function login()
       {
