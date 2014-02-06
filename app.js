@@ -78,8 +78,6 @@ server.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 var socket = socketio.listen(server, {log:false});
-
-
 /*------------------Critical Exception Handling------------------------------*/
 
 //Default kill signal
@@ -133,43 +131,29 @@ socket.sockets.on('connection', function (socket){
             socket.emit("socket-validate", {message: "Please check your email", value: "false"});
         }
     });
-    //returns only user id, name and surname
-    socket.on('socket-getusername', function(data){
-        database.selectNameSurname(data.id, function callback(situation){
-            if(situation !== false && situation !== undefined){
-                socket.emit('socket-usernamesurname', {usernamesurname: situation});
+    socket.on('socket-insertestate', function(data){
+        database.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
+            if(results !== undefined && results !== false){
+                var estateID = results;
+                database.insertLocation(estateID, data.streetNum, data.streetName, data.aptNum, data.city, data.area, data.state, data.zip, function location(isDone){
+                    if(isDone !== undefined && isDone == true){
+                        database.insertText(estateID, data.text, function location(isText){
+                            if(isText !== undefined && isText == true){
+                                var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID + "_" + i;
+                                fs.writeFile(saveDirectory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
+                                console.log("Image saved to the file system successfully");
+                            }
+                        });
+                    }
+                });
             }
         });
     });
-    socket.on('socket-post', function(data){
-        /*
-         *
-         * data.id: post sender's id
-         * data.videos: videos array
-         * data.images: images array
-         * data.types:  types of the post content, 0 for image, 1 for video
-         */
-            var i;
-            database.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
-                if(results !== undefined && results !== false){
-                    var postID = results;
-                    database.insertLink(postID, data.videos[i], function callback(isDone){
-                        console.log("Video added to database successfully");
-                    });
-                    for(i=0;i<data.images.length;i++)
-                    {
-                    var saveDirectory = "./public/users/" + data.id + "/posts/" + postID + "_" + i;
-                    fs.writeFile(saveDirectory, data.images[i].replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
-                    console.log("Image saved to the file system successfully");
-                    }
-                }
-            });
-    });
     //revoked in user settings page when a user changes his or her profile pic
-    socket.on('socket-profile', function(data){
+    socket.on('socket-profilepic', function(data){
         if(data.image){
-        var directory = './public/users/' + data.id + '/profilepic.png';
-        fs.writeFile(directory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
+            var directory = './public/users/' + data.id + '/profilepic.png';
+            fs.writeFile(directory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
         }
     });
     //revoked in user settings page when a user changes his or her profile settings
