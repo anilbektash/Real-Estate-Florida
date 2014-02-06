@@ -7,11 +7,11 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if(!err){
-        console.log("Connected to socialtrends DB");
+        console.log("Connected to florida DB");
     }
     console.log(err);
 });
-exports.insertEstate = function (userID, name, price, area, bed, bath) {
+exports.insertEstate = function (userID, name, price, area, bed, bath, callback) {
     var die = new stochator({
         kind: "integer",
         min: 1,
@@ -19,7 +19,7 @@ exports.insertEstate = function (userID, name, price, area, bed, bath) {
     });
     var randomID = die.next();
     connection.query(
-        "INSERT INTO post(`id`, `userID`, `name`,`price`, `area`,`bed`, `bath`, `date`, `cur_time`) VALUES(?, ?, ?,  ?, ?, ?, ?, NOW(), CURRENT_TIME());", [randomID, userID, name, price, area, bed, bath], function(err, rows, fields)
+        "insert into estate(`id`, `userID`, `name`,`price`, `area`,`bed`, `bath`, `date`, `cur_time`) VALUES(?, ?, ?,  ?, ?, ?, ?, NOW(), CURRENT_TIME());", [randomID, userID, name, price, area, bed, bath], function(err, rows, fields)
         {
             if(err){
                 console.log(err);
@@ -28,6 +28,40 @@ exports.insertEstate = function (userID, name, price, area, bed, bath) {
             else
             {
                 callback(randomID);
+            }
+        }
+    );
+    callback(undefined);
+};
+//id: post id
+exports.insertLocation = function (id, streetNum, streetName, aptNum, city, area, state, zip, callback) {
+    var randomID = die.next();
+    connection.query(
+        "insert into location(`id`, `street_num`, `street_name`, `apt_num`, `city`, `area`, `state`, `zipcode`) VALUES(?, ?, ?,  ?, ?, ?, ?, ?);", [id, streetNum, streetName, aptNum, city, area, state, zip], function(err, rows, fields)
+        {
+            if(err){
+                console.log(err);
+                callback(false);
+            }
+            else{
+                callback(true);
+            }
+        }
+    );
+    callback(undefined);
+};
+//id: post id
+exports.insertText = function (id, text) {
+    var randomID = die.next();
+    connection.query(
+        "insert text(`id`, `text`) VALUES(?, ?);", [id, text], function(err, rows, fields)
+        {
+            if(err){
+                console.log(err);
+                callback(false);
+            }
+            else{
+                callback(true);
             }
         }
     );

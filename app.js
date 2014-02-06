@@ -37,6 +37,7 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 app.use(express.static('./public/images'));
 app.use(express.static('./public/javascripts'));
 app.use(express.static('./public/scroll'));
@@ -124,16 +125,6 @@ socket.sockets.on('connection', function (socket){
             socket.emit("socket-validate", {message: "Please check your email", value: "false"});
         }
     });
-    //The function called when search button is pressed
-    socket.on('socket-searchuser', function(data){
-        data.input = sanitize(data.input).escape();
-        console.log("Sanitized in search user: " + data.input);
-        database.searchUser(data.input, function process(resultSet){
-            if(resultSet !== undefined){
-                socket.emit("socket-getsearchuser", {result: resultSet});
-            }
-        });
-    });
     //returns only user id, name and surname
     socket.on('socket-getusername', function(data){
         database.selectNameSurname(data.id, function callback(situation){
@@ -141,6 +132,30 @@ socket.sockets.on('connection', function (socket){
                 socket.emit('socket-usernamesurname', {usernamesurname: situation});
             }
         });
+    });
+    socket.on('socket-post', function(data){
+        /*
+         *
+         * data.id: post sender's id
+         * data.videos: videos array
+         * data.images: images array
+         * data.types:  types of the post content, 0 for image, 1 for video
+         */
+            var i;
+            database.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
+                if(results !== undefined && results !== false){
+                    var postID = results;
+                    database.insertLink(postID, data.videos[i], function callback(isDone){
+                        console.log("Video added to database successfully");
+                    });
+                    for(i=0;i<data.images.length;i++)
+                    {
+                    var saveDirectory = "./public/users/" + data.id + "/posts/" + postID + "_" + i;
+                    fs.writeFile(saveDirectory, data.images[i].replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
+                    console.log("Image saved to the file system successfully");
+                    }
+                }
+            });
     });
     //revoked in user settings page when a user changes his or her profile pic
     socket.on('socket-profile', function(data){
