@@ -35,6 +35,9 @@ exports.insertEstate = function (userID, name, price, area, bed, bath, callback)
 };
 //id: post id
 exports.insertLocation = function (id, streetNum, streetName, aptNum, city, area, state, zip, callback) {
+    if(!streetNum.length){
+        streetNum = "";
+    }
     connection.query(
         "insert into location(`id`, `street_num`, `street_name`, `apt_num`, `city`, `area`, `state`, `zipcode`) VALUES(?, ?, ?,  ?, ?, ?, ?, ?);", [id, streetNum, streetName, aptNum, city, area, state, zip], function(err, rows, fields)
         {
