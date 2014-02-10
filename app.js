@@ -132,16 +132,18 @@ socket.sockets.on('connection', function (socket){
         }
     });
     socket.on('socket-insertestate', function(data){
-        database.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
+        insert.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
             if(results !== undefined && results !== false){
                 var estateID = results;
-                database.insertLocation(estateID, data.streetNum, data.streetName, data.aptNum, data.city, data.area, data.state, data.zip, function location(isDone){
+                insert.insertLocation(estateID, data.streetNum, data.streetName, data.aptNum, data.city, data.area, data.state, data.zip, function location(isDone){
                     if(isDone !== undefined && isDone == true){
-                        database.insertText(estateID, data.text, function location(isText){
+                        insert.insertText(estateID, data.text, function location(isText){
                             if(isText !== undefined && isText == true){
-                                var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID + "_" + i;
-                                fs.writeFile(saveDirectory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
-                                console.log("Image saved to the file system successfully");
+                                if(image != "") {
+                                    var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID;
+                                    fs.writeFile(saveDirectory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
+                                    console.log("Image saved to the file system successfully");
+                                }
                             }
                         });
                     }
@@ -155,6 +157,14 @@ socket.sockets.on('connection', function (socket){
             var directory = './public/users/' + data.id + '/profilepic.png';
             fs.writeFile(directory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
         }
+    });
+    //search amid the real estates in the databases with names, street, city etc parameters
+    socket.on('socket-search', function(data){
+        select.search(data.input, function(done){
+            if(done !== undefined){
+                socket.emit('socket-searchresults', {});
+            }
+        });
     });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-settingschange', function(data){
@@ -194,6 +204,72 @@ socket.sockets.on('connection', function (socket){
         }
         if(counter == data.length){
             socket.emit('socket-alert', {data: "Settings changes successfully"});
+        }
+    });
+    //revoked in user settings page when a user changes his or her profile settings
+    socket.on('socket-estateupdate', function(data){
+        var counter = 0;
+        if(data.streetnum && data.streetnum.length > 0){
+            counter++;
+            update.updateEstateStreetNum(data.id, data.streetnum, function(done){});
+        }
+        if(data.streetname && data.streetname.length > 0){
+            counter++;
+            update.updateEstateStreetName(data.id, data.streetname, function(done){
+            });
+        }
+        if(data.aptnum && data.aptnum.length > 0){
+            counter++;
+            update.updateEstateAptNum(data.id, data.aptnum, function(done){
+            });
+        }
+        if(data.city && data.city.length > 0){
+            counter++;
+            update.updateEstateCity(data.id, data.city, function(done){
+            });
+        }
+        if(data.state && data.state.length > 0){
+            counter++;
+            update.updateEstateState(data.id, data.state, function(done){
+            });
+        }
+        if(data.zipcode && data.zipcode.length > 0){
+            counter++;
+            update.updateEstateZipcode(data.id, data.zipcode, function(done){
+            });
+        }
+        if(data.text && data.text.length > 0){
+            counter++;
+            update.updateEstateText(data.id, data.text, function(done){
+            });
+        }
+        if(data.name && data.name.length > 0){
+            counter++;
+            update.updateEstateName(data.id, data.name, function(done){
+            });
+        }
+        if(data.price && data.price.length > 0){
+            counter++;
+            update.updateEstatePrice(data.id, data.price, function(done){
+            });
+        }
+        if(data.area && data.area.length > 0){
+            counter++;
+            update.updateEstateArea(data.id, data.area, function(done){
+            });
+        }
+        if(data.bed && data.bed.length > 0){
+            counter++;
+            update.updateEstateBed(data.id, data.bed, function(done){
+            });
+        }
+        if(data.bath && data.bath.length > 0){
+            counter++;
+            update.updateEstateBath(data.id, data.bath, function(done){
+            });
+        }
+        if(counter == data.length){
+            socket.emit('socket-alert', {data: "Estate information updated successfully"});
         }
     });
 });

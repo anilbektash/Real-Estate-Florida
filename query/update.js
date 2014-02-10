@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if(!err){
-        console.log("Connected to socialtrends DB");
+        console.log("Connected to florida DB");
     }
     console.log(err);
 });
@@ -128,4 +128,88 @@ exports.Update_User_email = function (id,newEmail, callback) {
         }
     );
     callback(undefined);
+};
+exports.updateEstateStreetNum(id, change, callback){
+    connection.query
+    (
+        "update location set street_num=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateStreetName(id, change, callback){
+    connection.query
+    (
+        "update location set street_name=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateAptNum(id, change, callback){
+    connection.query
+    (
+        "update location set apt_num=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateCity(id, change, callback){
+    connection.query
+    (
+        "update location set city=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateState(id, change, callback){
+    connection.query
+    (
+        "update location set state=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateZipcode(id, change, callback){
+    connection.query
+    (
+        "update location set zipcode=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateText(id, change, callback){
+    connection.query
+    (
+        "update text set content=? where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstateName(id, change, callback){
+    connection.query
+    (
+        "update estate set name=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateEstatePrice(id, change, callback){
+    connection.query
+    (
+        "update estate set price=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateArea(id, change, callback){
+    connection.query
+    (
+        "update estate set area=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateBed(id, change, callback){
+    connection.query
+    (
+        "update estate set bed=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
+        }
+    );
+};
+exports.updateBath(id, change, callback){
+    connection.query
+    (
+        "update estate set bath=?, date = now(), cur_time = current_time where id = ?", [change, id], function(err, result, field){
+        }
+    );
 };
