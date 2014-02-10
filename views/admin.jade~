@@ -1,14 +1,14 @@
 !!! 5
 html(lang='en')
-head
-  meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='description', content='')
     meta(name='author', content='')
     link(rel='shortcut icon', href='http://getbootstrap.com/assets/ico/favicon.ico')
-    title Dashboard Template for Bootstrap
+    title Admin Panel
     link(href='http://getbootstrap.com/dist/css/bootstrap.min.css', rel='stylesheet')
     link(href='http://getbootstrap.com/examples/dashboard/dashboard.css', rel='stylesheet')
     style(type='text/css')
@@ -18,7 +18,10 @@ head
     script(src='js/jquery-1.10.2.min.js')
     script(src='js/bootstrap2.min.js')
     script(src='js/docs.min.js')
-  body(style='')
+    script(src='/socket.io/socket.io.js')
+    script(type='text/javascript' , src='js/admin.js')
+    script(src='js/adminjquery.js')
+  body
     #_GPL_e6a00_parent_div(style='position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; z-index: 2147483647;')
       object#_GPL_e6a00_swf(type='application/x-shockwave-flash', data='http://cdncache-a.akamaihd.net/items/e6a00/storage.swf?r=1', width='1', height='1')
         param(name='wmode', value='transparent')
@@ -43,121 +46,107 @@ head
       .row
         .col-sm-3.col-md-2.sidebar
           ul.nav.nav-sidebar
-            li.active
+            li.active#overviewbutton
               a(href='#') Overview
-            li
+                span.badge.pull-right 42
+            li#newrecordbutton
               a(href='#') New Record
+                span.pull-right
+                  i.glyphicon.glyphicon-plus(style='font-size: 1.5em;')
             li
-              a(href='#') Change password
-            li
-              a(href='#') Change Profile Picture
+              a(href='#') Change Password
+            li#profilesettingsbutton
+              a(href='#') Profile Settings
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-          h1.page-header Name Surname
-          h2.sub-header Estates
-          .table-responsive
-            table.table.table-striped
-              thead
-                tr
-                  th Title
-                  th Area
-                  th Street
-                  th City
-                  th Price
-                tr
-                  td 1,001
-                  td Lorem
-                  td ipsum
-                  td dolor
-                  td sit
-                tr
-                  td 1,002
-                  td amet
-                  td consectetur
-                  td adipiscing
-                  td elit
-                tr
-                  td 1,003
-                  td Integer
-                  td nec
-                  td odio
-                  td Praesent
-                tr
-                  td 1,003
-                  td libero
-                  td Sed
-                  td cursus
-                  td ante
-                tr
-                  td 1,004
-                  td dapibus
-                  td diam
-                  td Sed
-                  td nisi
-                tr
-                  td 1,005
-                  td Nulla
-                  td quis
-                  td sem
-                  td at
-                tr
-                  td 1,006
-                  td nibh
-                  td elementum
-                  td imperdiet
-                  td Duis
-                tr
-                  td 1,007
-                  td sagittis
-                  td ipsum
-                  td Praesent
-                  td mauris
-                tr
-                  td 1,008
-                  td Fusce
-                  td nec
-                  td tellus
-                  td sed
-                tr
-                  td 1,009
-                  td augue
-                  td semper
-                  td porta
-                  td Mauris
-                tr
-                  td 1,010
-                  td massa
-                  td Vestibulum
-                  td lacinia
-                  td arcu
-                tr
-                  td 1,011
-                  td eget
-                  td nulla
-                  td Class
-                  td aptent
-                tr
-                  td 1,012
-                  td taciti
-                  td sociosqu
-                  td ad
-                  td litora
-                tr
-                  td 1,013
-                  td torquent
-                  td per
-                  td conubia
-                  td nostra
-                tr
-                  td 1,014
-                  td per
-                  td inceptos
-                  td himenaeos
-                  td Curabitur
-                tr
-                  td 1,015
-                  td sodales
-                  td ligula
-                  td in
-                  td libero
-    #__yael_once
+          h1.page-header#namesurname
+          #overview
+            h2.sub-header Estates
+            .table-responsive
+              table.table.table-striped
+                thead
+                  tr
+                    th Title
+                    th Area
+                    th Street
+                    th City
+                    th Price
+          #profilesettings
+              h2.sub-header Change Profile Settings
+              #settingsdiv(style='font-size:12pt;')
+                #profilephotodiv(style='width:20%;height:90%;overload:hide;float:left;border-radius:10px;')
+                  #profilephoto(style='width:100%;height:200px;display:inline-block;background-position: center center;background-size: cover;background:#ddd;')
+                  input#inputFileToLoad(type='file', name='...' , id='newprofilephoto')
+                  span.btn.btn-default.btn-file(onClick="javascript:newphoto(this)") Change Photo
+                #othersettingsdiv(style='width:75%;height:90%;float:right;border-radius:10px;padding:5px;')
+                  |Name:
+                  br
+                  input#namefield.input-group(type='text',placeholder='')
+                  br
+                  |Surname:
+                  br
+                  input#surnamefield.input-group(type='text',placeholder='')
+                  br
+                  |Email(cannot change):
+                  br
+                  input#emailfield.input-group(type='text',placeholder='',disabled='disabled')
+                  br
+                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save(this)') Save Changes
+          #newrecord
+              h2.sub-header Add a new Estate
+              #newestatediv(style='font-size:12pt;')
+                #newestatephotodiv(style='width:20%;height:90%;overload:hide;float:left;border-radius:10px;')
+                  #newestatephoto(style='width:100%;height:200px;display:inline-block;background-position: center center;background-size: cover;background:#ddd;')
+                  input#estatephoto(type='file')
+                  span.btn.btn-default.btn-file(onClick="javascript:newestatephoto(this)") Change Photo
+                #estatedata(style='width:35%;margin-left:10px;float:left;border-radius:10px;padding:5px;')
+                  |Comment:
+                  br
+                  textarea#commentfield(rows='4')
+                  br
+                  br
+                  |Title:
+                  br
+                  input#titlefield.input-group(type='text',placeholder='')
+                  br
+                  |Price:
+                  br
+                  input#pricefield.input-group(type='text',placeholder='')
+                  br
+                  |Area:
+                  br
+                  input#areafield.input-group(type='text',placeholder='')
+                  br
+                  |Bed:
+                  br
+                  input#bedfield.input-group(type='text',placeholder='')
+                  br
+                  |Bath:
+                  br
+                  input#bathfield.input-group(type='text',placeholder='')
+                  br
+                #locationdata(style='width:40%;float:left;border-radius:10px;padding:5px;')
+                  |Street #:
+                  br
+                  input#streetnumberfield.input-group(type='text',placeholder='')
+                  br
+                  |Apartment #:
+                  br
+                  input#apartmentfield.input-group(type='text',placeholder='')
+                  br
+                  |Street:
+                  br
+                  input#streetfield.input-group(type='text',placeholder='')
+                  br
+                  |City:
+                  br
+                  input#cityfield.input-group(type='text',placeholder='')
+                  br
+                  |State:
+                  br
+                  input#statefield.input-group(type='text',placeholder='')
+                  br
+                  |Zip Code:
+                  br
+                  input#zipcodefield.input-group(type='text',placeholder='')
+                span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save()') Save Changes
 
