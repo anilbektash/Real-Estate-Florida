@@ -8,10 +8,32 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if(!err){
-        console.log("Connected to socialtrends DB");
+        console.log("Connected to florida DB");
     }
     console.log(err);
 });
+exports.search = function(input, callback){
+    if(input.length > 3){
+        connection.query(
+            "select * from estate where name in ? or price in ?", [input], function(error, results, fields){
+                if(results !== undefined && results.length > 0){
+                    callback(results);
+                }
+                else if(results !== undefined){
+                    connection.query(
+                        "select * from location where street_name in ? or city in ? or state in ? or zipcode in ?", [input, input, input, input], function(error, results, fields){
+                            if(results !== undefined && results.length > 0){
+                                callback(results);
+                            }
+                        }
+                    );
+                    callback(undefined);
+                }
+            }
+        );
+    }
+    callback(undefined);
+};
 //TESTED, DO NOT MODIFY!!
 exports.email_ExistsFunc = function (emailToCheck, callback) {
     connection.query(

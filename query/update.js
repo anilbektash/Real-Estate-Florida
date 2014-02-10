@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if(!err){
-        console.log("Connected to socialtrends DB");
+        console.log("Connected to florida DB");
     }
     console.log(err);
 });

@@ -139,7 +139,7 @@ socket.sockets.on('connection', function (socket){
                     if(isDone !== undefined && isDone == true){
                         database.insertText(estateID, data.text, function location(isText){
                             if(isText !== undefined && isText == true){
-                                var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID + "_" + i;
+                                var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID;
                                 fs.writeFile(saveDirectory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
                                 console.log("Image saved to the file system successfully");
                             }
@@ -155,6 +155,14 @@ socket.sockets.on('connection', function (socket){
             var directory = './public/users/' + data.id + '/profilepic.png';
             fs.writeFile(directory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
         }
+    });
+    //search amid the real estates in the databases with names, street, city etc parameters
+    socket.on('socket-search', function(data){
+        select.search(data.input, function(done){
+            if(done !== undefined){
+                socket.emit('socket-searchresults', {result:done});
+            }
+        });
     });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-settingschange', function(data){
