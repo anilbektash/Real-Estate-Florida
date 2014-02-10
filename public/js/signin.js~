@@ -1,13 +1,14 @@
-function login()
+      function login()
       {
       var var1 = document.getElementById('email').value;
       var var2 = document.getElementById('password').value;
       gonder(var1,var2);
       }
-var socket = io.connect('http://localhost');
+
       function gonder(var1,var2)
       {
       socket.emit('socket-login' , {email:var1,password:var2});
+      alert("geldim");
       }
       socket.on('socket-validate',function(data){
       if(data.value == "true")
@@ -21,5 +22,4 @@ var socket = io.connect('http://localhost');
       else
       {
       alert(data.message);
-      }
-      });
+      }});
