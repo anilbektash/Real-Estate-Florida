@@ -61,6 +61,7 @@
 			city : city,
 			state : state,
 			zipcode : zipcode});
+		alert("Saved successfuly.")
 	}
 
         
