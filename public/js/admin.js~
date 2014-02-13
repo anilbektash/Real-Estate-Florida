@@ -35,15 +35,19 @@
       }
       }
       }
+	
       $(window).scroll(function() {	
 		if($(window).scrollTop() + $(window).height() == $(document).height()) 
 		{
-		alert("Scrolldown");
 		       	indexnumber++;
 		       	socket.emit('socket-getlisting', {index : indexnumber});
 		}
       });
-      
+      	
+	function deleteobject(e)
+	{
+		deletejquery(e,e.getAttribute("id"));
+	}
 
 
 

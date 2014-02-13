@@ -42,7 +42,7 @@
 			addstr += "<td>" + data.result[i].street_name + "</td>";
 			addstr += "<td>" + data.result[i].city + "</td>";
 			addstr += "<td>" + data.result[i].price + "</td>";
-			addstr += '<td><a href="#"><span style="color:#f00">Delete</span></a></td>';
+			addstr += '<td onclick="javascript:deleteobject(this)" id="' + data.result[i].id + '"><a href="#"><span style="color:#f00">Delete</span></a></td>';
 			addstr += "</tr>";
 		}
 		$("#estatetable").append(addstr);
@@ -84,5 +84,15 @@
 			zipcode : zipcode});
 		alert("Saved successfuly.")
 	}
+	
+	function deletejquery(id)
+	{
+		socket.emit('socket-delete' , {id : id});
+		$('#' + id).parent().hide('slow');
+	}
+
+
+
+
 
         

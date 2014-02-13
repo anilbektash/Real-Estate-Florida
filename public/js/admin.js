@@ -35,6 +35,7 @@
       }
       }
       }
+	
       $(window).scroll(function() {	
 		if($(window).scrollTop() + $(window).height() == $(document).height()) 
 		{
@@ -42,7 +43,11 @@
 		       	socket.emit('socket-getlisting', {index : indexnumber});
 		}
       });
-      
+      	
+	function deleteobject(e)
+	{
+		deletejquery(e.getAttribute("id"));
+	}
 
 
 
