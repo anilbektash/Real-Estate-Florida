@@ -139,6 +139,7 @@ socket.sockets.on('connection', function (socket){
         });
     });
     socket.on('socket-insertestate', function(data){
+        console.log("Inserting...");
         insert.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
             if(results !== undefined && results !== false){
                 var estateID = results;

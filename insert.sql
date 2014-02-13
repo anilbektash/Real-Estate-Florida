@@ -13,16 +13,3 @@ INSERT INTO users(`password`, `name`, `surname`,  `email`) VALUES(1, "Deniz", 	"
 INSERT INTO users(`password`, `name`, `surname`,  `email`) VALUES(1, "Ebru", 	"Unal",  	"ebru@gmail.com");
 INSERT INTO users(`password`, `name`, `surname`,  `email`) VALUES(1, "Ahu", 	"Unal",  	"ahu@gmail.com");
 INSERT INTO users(`password`, `name`, `surname`,  `email`) VALUES(1, "Atakan",	"Unal",  	"atakan@gmail.com");
-
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-INSERT INTO estate(`userID`, `name`, `price`, `area`, `bed`, `bath`) VALUES(1, "Ahmet Mansion", 18000, 60, 2, 2);
-
-INSERT INTO location(`street_num`, `street_name`, `apt_num`, `city`, `state`, `zipcode`) VALUES("12300", "Victoria", "12", "Miami", "Florida", "637111");

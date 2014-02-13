@@ -15,7 +15,7 @@ connection.connect(function(err){
 //selects 10 estates starting from index*10 for listing purpose
 exports.select10Estate = function(index, callback){
     connection.query(
-        "select title, area, street_num, city, price from estate, location, text limit ?, ? order by date desc, cur_time desc", [index*10, (index + 1)*10], function(err, res, fields){
+        "select name, area, street_num, city, price from estate, location, text order by date desc, cur_time desc limit ?, ?", [index*10, (index + 1)*10], function(err, res, fields){
             if(res !== undefined){
                 console.log(JSON.stringify(res));
                 callback(res);
