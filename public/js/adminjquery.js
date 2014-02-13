@@ -30,7 +30,7 @@
 		socket.emit('socket-getlisting', {index : 0});
 	});
 	socket.on('socket-sendlisting', function(data){
-		JSON.strigify(result);
+		JSON.strigify(data);
 	});
 
 	function socketgonder(comment,title,price,area,bed,bath,streetn,apartmentn,street,city,state,zipcode)
