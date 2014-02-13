@@ -131,6 +131,13 @@ socket.sockets.on('connection', function (socket){
             socket.emit("socket-validate", {message: "Please check your email", value: "false"});
         }
     });
+    socket.on('socket-getlisting', function(data){
+        database.select10Estate(data.index, function callback(results){
+            if(results !== undefined){
+                socket.emit("socket-sendlisting", {result:results});
+            }
+        });
+    });
     socket.on('socket-insertestate', function(data){
         insert.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
             if(results !== undefined && results !== false){
@@ -139,8 +146,9 @@ socket.sockets.on('connection', function (socket){
                     if(isDone !== undefined && isDone == true){
                         insert.insertText(estateID, data.text, function location(isText){
                             if(isText !== undefined && isText == true){
-                                if(image != "") {
-                                    var saveDirectory = "./public/users/" + data.id + "/posts/" + estateID;
+                                if(data.image != "") {
+                                    var saveDirectory = "./public/users/" + data.userID + "/posts/" + estateID;
+                                    console.log("Image save dir: " + saveDirectory);
                                     fs.writeFile(saveDirectory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
                                     console.log("Image saved to the file system successfully");
                                 }

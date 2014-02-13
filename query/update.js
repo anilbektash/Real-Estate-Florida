@@ -129,84 +129,84 @@ exports.Update_User_email = function (id,newEmail, callback) {
     );
     callback(undefined);
 };
-exports.updateEstateStreetNum(id, change, callback){
+exports.updateEstateStreetNum = function(id, change, callback){
     connection.query
     (
         "update location set street_num=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateStreetName(id, change, callback){
+exports.updateEstateStreetName = function(id, change, callback){
     connection.query
     (
         "update location set street_name=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateAptNum(id, change, callback){
+exports.updateEstateAptNum = function(id, change, callback){
     connection.query
     (
         "update location set apt_num=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateCity(id, change, callback){
+exports.updateEstateCity = function(id, change, callback){
     connection.query
     (
         "update location set city=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateState(id, change, callback){
+exports.updateEstateState = function(id, change, callback){
     connection.query
     (
         "update location set state=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateZipcode(id, change, callback){
+exports.updateEstateZipcode = function(id, change, callback){
     connection.query
     (
         "update location set zipcode=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateText(id, change, callback){
+exports.updateEstateText = function(id, change, callback){
     connection.query
     (
         "update text set content=? where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstateName(id, change, callback){
+exports.updateEstateName = function(id, change, callback){
     connection.query
     (
         "update estate set name=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateEstatePrice(id, change, callback){
+exports.updateEstatePrice = function(id, change, callback){
     connection.query
     (
         "update estate set price=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateArea(id, change, callback){
+exports.updateArea = function(id, change, callback){
     connection.query
     (
         "update estate set area=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateBed(id, change, callback){
+exports.updateBed = function(id, change, callback){
     connection.query
     (
         "update estate set bed=?, date = now(), cur_time = current_time  where id = ?", [change, id], function(err, result, field){
         }
     );
 };
-exports.updateBath(id, change, callback){
+exports.updateBath = function(id, change, callback){
     connection.query
     (
         "update estate set bath=?, date = now(), cur_time = current_time where id = ?", [change, id], function(err, result, field){

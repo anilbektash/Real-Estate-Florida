@@ -39,7 +39,7 @@ exports.insertLocation = function (id, streetNum, streetName, aptNum, city, area
         streetNum = "";
     }
     connection.query(
-        "insert into location(`id`, `street_num`, `street_name`, `apt_num`, `city`, `area`, `state`, `zipcode`) VALUES(?, ?, ?,  ?, ?, ?, ?, ?);", [id, streetNum, streetName, aptNum, city, area, state, zip], function(err, rows, fields)
+        "insert into location(`id`, `street_num`, `street_name`, `apt_num`, `city`,  `state`, `zipcode`) VALUES(?, ?, ?,  ?, ?, ?, ?);", [id, streetNum, streetName, aptNum, city, area, state, zip], function(err, rows, fields)
         {
             if(err){
                 console.log(err);
@@ -53,10 +53,9 @@ exports.insertLocation = function (id, streetNum, streetName, aptNum, city, area
     callback(undefined);
 };
 //id: post id
-exports.insertText = function (id, text) {
-    var randomID = die.next();
+exports.insertText = function (id, text, callback) {
     connection.query(
-        "insert text(`id`, `text`) VALUES(?, ?);", [id, text], function(err, rows, fields)
+        "insert text(`id`, `content`) VALUES(?, ?);", [id, text], function(err, rows, fields)
         {
             if(err){
                 console.log(err);
