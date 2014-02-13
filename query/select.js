@@ -12,13 +12,13 @@ connection.connect(function(err){
     }
     console.log(err);
 });
-//selects 10 estates starting from index*10
+//selects 10 estates starting from index*10 for listing purpose
 exports.select10Estate = function(index, callback){
     connection.query(
-        "select * from estate, location, text limit ?, ? order by date desc, cur_time desc", [index*10, (index + 1)*10], function(err, resu, fields){
-            if(resu !== undefined){
-                console.log(JSON.stringify(resu));
-                callback(resu);
+        "select title, area, street_num, city, price from estate, location, text limit ?, ? order by date desc, cur_time desc", [index*10, (index + 1)*10], function(err, res, fields){
+            if(res !== undefined){
+                console.log(JSON.stringify(res));
+                callback(res);
             }
         }
     );
@@ -26,10 +26,10 @@ exports.select10Estate = function(index, callback){
 };
 exports.selectEstate = function(id, callback){
     connection.query(
-        "select * from estate, location, text where id = ?", [id], function(err, resu, fields){
-            if(resu !== undefined){
-                console.log(JSON.stringify(resu));
-                callback(resu);
+        "select * from estate, location, text where id = ?", [id], function(err, res, fields){
+            if(res !== undefined){
+                console.log(JSON.stringify(res));
+                callback(res);
             }
         }
     );
