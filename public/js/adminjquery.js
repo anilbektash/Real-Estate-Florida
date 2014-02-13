@@ -28,9 +28,6 @@
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
       		$("#emailfield").attr('placeholder',localStorage['mail']);
 		socket.emit('socket-getlisting', {index : 0});
-		alert($(window).scrollTop());
-		alert($(window).height());
-		alert($(document).height());
 	});
 	socket.on('socket-sendlisting', function(data){
 		JSON.strigify(result);
