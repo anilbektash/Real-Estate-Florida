@@ -143,6 +143,7 @@ socket.sockets.on('connection', function (socket){
         insert.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
             if(results !== undefined && results !== false){
                 var estateID = results;
+                console.log("Estate id: " + estateID);
                 insert.insertLocation(estateID, data.streetNum, data.streetName, data.aptNum, data.city, data.area, data.state, data.zip, function location(isDone){
                     if(isDone !== undefined && isDone == true){
                         insert.insertText(estateID, data.text, function location(isText){
