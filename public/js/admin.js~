@@ -28,9 +28,24 @@
       {
       var div = document.getElementById('newestatephoto');
       div.style.backgroundImage = "url(" + fileLoadedEvent.target.result + ")";
+      div.style.backgroundSize = "cover";
       cnt = fileLoadedEvent.target.result;
       };
       fileReader.readAsDataURL(fileToLoad);
       }
       }
       }
+      $(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		       alert("bottom!");
+		}
+      });
+      
+
+
+
+
+
+
+
+
