@@ -27,6 +27,10 @@
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
       		$("#emailfield").attr('placeholder',localStorage['mail']);
+		socket.emit('socket-getlisting', {index : 0});
+	});
+	socket.on('socket-sendlisting', function(data){
+		JSON.strigify(result);
 	});
 
 	function socketgonder(comment,title,price,area,bed,bath,streetn,apartmentn,street,city,state,zipcode)

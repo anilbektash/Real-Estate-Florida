@@ -33,6 +33,7 @@
 	{
 		if(cnt == "Empty")
 			socket.emit('socket-insertestate', {
+			userID : localStorage['id'],
 			image : "" ,
 			text : comment,
 	 		name : title,
@@ -48,6 +49,7 @@
 			zipcode : zipcode});
 		else
 			socket.emit('socket-insertestate', {
+			userID : localStorage['id'],
 			image : cnt ,
 			text : comment,
 	 		name : title,
