@@ -11,9 +11,9 @@ connection.connect(function(err){
     }
     console.log(err);
 });
-exports.deleteEstate = function (id, userID) {
+exports.deleteEstate = function (id, callback) {
     connection.query(
-        "delete from estate where id = ? and userID = ?", [id, userID], function(err, rows, fields)
+        "delete from estate where id = ?", [id], function(err, rows, fields)
         {
             if(err){
                 console.log(err);

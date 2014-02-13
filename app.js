@@ -131,6 +131,7 @@ socket.sockets.on('connection', function (socket){
             socket.emit("socket-validate", {message: "Please check your email", value: "false"});
         }
     });
+    //lists estates 10 of them, according to index*10 as starting index
     socket.on('socket-getlisting', function(data){
         select.select10Estate(data.index, function callback(results){
             if(results !== undefined){
@@ -138,6 +139,14 @@ socket.sockets.on('connection', function (socket){
             }
         });
     });
+    //deletes estate
+    socket.on('socket-delete', function(data){
+        remove.deleteEstate(data.id, function callback(results){
+            if(results !== undefined){
+            }
+        });
+    });
+    //inserts estate
     socket.on('socket-insertestate', function(data){
         console.log("Inserting...");
         insert.insertEstate(data.userID, data.name, data.price, data.area, data.bed, data.bath,  function callback(results){
