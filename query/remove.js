@@ -18,22 +18,21 @@ exports.deleteEstate = function (id, userID) {
             if(err){
                 console.log(err);
             }
-            if(rows !== undefined){
-                connection.query
-                (
-                    "delete from location where id = ?", [id], function(err, rows, fields){
-                        if(rows !== undefined){
-                            connection.query
-                            (
-                                "delete from text where id = ?", [id], function(err, rows, fields){
-                                    if(rows !== undefined){
-                                        callback(true);
-                                    }
-                                }
-                            );
-                        }
-                    }
-                );
+        }
+    );
+    connection.query
+    (
+        "delete from location where id = ?", [id], function(err, rows, fields){
+            if(err){
+                console.log(err);
+            }
+        }
+    );
+    connection.query
+    (
+        "delete from text where id = ?", [id], function(err, rows, fields){
+            if(err){
+                console.log(err);
             }
         }
     );
