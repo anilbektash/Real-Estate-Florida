@@ -1,4 +1,5 @@
         var socket = io.connect('http://localhost');
+	var indexnumber = 0;
         $(document).ready(function() {
                 var addstr = '<img src="users/' + localStorage['id'] + '/profilepic.png" style="width:100px;height:100px;border-radius:50px;';
 		addstr += 'background:#ddd"/>';
@@ -10,6 +11,8 @@
 			$("#newrecord").hide();
 			$("#profilesettings").hide();
 	  		$("#overview").show();
+			indexnumber = 0;
+			socket.emit('socket-getlisting', {index : indexnumber});
 		});
 		$("#newrecordbutton").click(function(){
 	  		$("#newrecord").show();
@@ -27,10 +30,21 @@
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
       		$("#emailfield").attr('placeholder',localStorage['mail']);
-		socket.emit('socket-getlisting', {index : 0});
+		socket.emit('socket-getlisting', {index : indexnumber});
 	});
 	socket.on('socket-sendlisting', function(data){
-		alert(JSON.strigify(data));
+		var addstr = "";
+		for(i=0;i<data.result.length;i++)
+		{
+			addstr += "<tr>";
+			addstr += "<td>" + data.result[i].name + "</td>";
+			addstr += "<td>" + data.result[i].area + "</td>";
+			addstr += "<td>" + data.result[i].streetName + "</td>";
+			addstr += "<td>" + data.result[i].city + "</td>";
+			addstr += "<td>" + data.result[i].price + "</td>";
+			addstr += "</tr>";
+		}
+		$("#estatetable").append(addstr);
 	});
 
 	function socketgonder(comment,title,price,area,bed,bath,streetn,apartmentn,street,city,state,zipcode)
