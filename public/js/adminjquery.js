@@ -11,8 +11,6 @@
 			$("#newrecord").hide();
 			$("#profilesettings").hide();
 	  		$("#overview").show();
-			indexnumber = 0;
-			socket.emit('socket-getlisting', {index : indexnumber});
 		});
 		$("#newrecordbutton").click(function(){
 	  		$("#newrecord").show();
@@ -31,6 +29,8 @@
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
       		$("#emailfield").attr('placeholder',localStorage['mail']);
 		socket.emit('socket-getlisting', {index : indexnumber});
+		indexnumber++;
+		socket.emit('socket-getlisting', {index : indexnumber});
 	});
 	socket.on('socket-sendlisting', function(data){
 		var addstr = "";
@@ -42,6 +42,7 @@
 			addstr += "<td>" + data.result[i].street_name + "</td>";
 			addstr += "<td>" + data.result[i].city + "</td>";
 			addstr += "<td>" + data.result[i].price + "</td>";
+			addstr += '<td><a href="#"><span style="color:#f00">Delete</span></a></td>';
 			addstr += "</tr>";
 		}
 		$("#estatetable").append(addstr);

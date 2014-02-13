@@ -62,14 +62,15 @@ html(lang='en' , style='overflow-y: scroll;')
           #overview
             h2.sub-header Estates
             .table-responsive
-              table.table.table-striped#estatetable
-                thead
+              table.table.table-striped
+                thead#estatetable
                   tr
                     th Title
                     th Area
                     th Street
                     th City
                     th Price
+                    th
           #profilesettings
               h2.sub-header Change Profile Settings
               #settingsdiv(style='font-size:12pt;')

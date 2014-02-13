@@ -35,10 +35,11 @@
       }
       }
       }
-      $(window).scroll(function() {
+      $(window).scroll(function() {	
 		if($(window).scrollTop() + $(window).height() == $(document).height()) 
 		{
-		       alert("bottom!");
+		       	indexnumber++;
+		       	socket.emit('socket-getlisting', {index : indexnumber});
 		}
       });
       
