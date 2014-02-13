@@ -132,7 +132,7 @@ socket.sockets.on('connection', function (socket){
         }
     });
     socket.on('socket-getlisting', function(data){
-        database.select10Estate(data.index, function callback(results){
+        select.select10Estate(data.index, function callback(results){
             if(results !== undefined){
                 socket.emit("socket-sendlisting", {result:results});
             }
