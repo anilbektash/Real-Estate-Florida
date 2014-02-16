@@ -25,7 +25,7 @@ exports.select10Estate = function(index, userID, callback){
     );
     callback(undefined);
 };
-exports.selectEstate = function(id, callback){
+exports.selectEstate = function(id, userID, callback){
     connection.query(
         "select * from estate, location, text where estate.id = ? and estate.userID = ?", [id, userID], function(err, res, fields){
             if(res !== undefined){
