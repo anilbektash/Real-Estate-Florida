@@ -70,7 +70,7 @@ html(lang='en' , style='overflow-y: scroll;')
                     th Street
                     th City
                     th Price
-                    th
+                    th 
           #profilesettings
               h2.sub-header Change Profile Settings
               #settingsdiv(style='font-size:12pt;')
@@ -90,8 +90,11 @@ html(lang='en' , style='overflow-y: scroll;')
                   |Email(cannot change):
                   br
                   input#emailfield.input-group(type='text',placeholder='',disabled='disabled')
+                  |Comment:
                   br
-                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save(this)') Save Changes
+                  textarea#biofield(rows='4')
+                  br
+                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:fixed;',onclick='saveprofile()') Save Changes
           #newrecord
               h2.sub-header Add a new Estate
               #newestatediv(style='font-size:12pt;')
@@ -149,5 +152,5 @@ html(lang='en' , style='overflow-y: scroll;')
                   |Zip Code:
                   br
                   input#zipcodefield.input-group(type='text',placeholder='')
-                span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save()') Save Changes
+                span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:fixed;',onclick='save()') Save Changes
 

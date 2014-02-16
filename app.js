@@ -185,41 +185,47 @@ socket.sockets.on('connection', function (socket){
             }
         });
     });
+    socket.on('socket-passwordchange', function(data){
+        if(data.password && data.password.length > 0){
+            update.Update_User_Password(data.id, data.old, data.password, function(done){
+                if(done===false) {
+                    socket.emit("socket-passwordalert", {data: "Please enter your current password correctly"});
+                }
+            });
+        }
+    });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-settingschange', function(data){
+        console.log("In settings change data: " + JSON.stringify(data));
         var counter = 0;
         if(data.firstname && data.firstname.length > 0){
-        counter++;
-        update.Update_User_FirstName(data.id, data.firstname, function(done){
-            if(done===false) {
-            socket.emit("socket-alert", {data: "Name couldn't updated"});
-            }
+            counter++;
+            update.Update_User_FirstName(data.id, data.firstname, function(done){
+                if(done===false) {
+                    socket.emit("socket-alert", {data: "Name couldn't updated"});
+                }
             });
         }
         if(data.lastname && data.lastname.length > 0){
-        counter++;
-        update.Update_User_LastName(data.id, data.lastname, function(done){
-            console.log(data);
-            if(done===false) {
-            socket.emit("socket-alert", {data: "Surname couldn't updated"});
-            }
+            counter++;
+            update.Update_User_LastName(data.id, data.lastname, function(done){
+                if(done===false) {
+                    socket.emit("socket-alert", {data: "Surname couldn't updated"});
+                }
             });
         }
-        if(data.password && data.password.length > 0){
-        counter++;
-        update.Update_User_Password(data.id, data.password, function(done){
-                if(done===false) {
-                socket.emit("socket-alert", {data: "Password couldn't updated"});
-                }
-                });
+        if(data.bio && data.bio.length > 0){
+            counter++;
+            update.updateBio(data.id, data.bio, function(done){
+            });
         }
         if(data.email && data.email.length > 0){
             counter++;
             update.Update_User_email(data.id, data.email, function(done){
-                    if(done===false) {
+                if(done===false) {
                     socket.emit("socket-alert", {data: "Email couldn't updated"});
-                    }
-                    });
+                }
+            });
         }
         if(counter == data.length){
             socket.emit('socket-alert', {data: "Settings changes successfully"});

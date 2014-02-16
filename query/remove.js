@@ -1,10 +1,9 @@
 var mysql   = require('mysql');
 var stochator   = require('stochasm');
-
+var config = require('../config.js');
 var connection = mysql.createConnection({
-	host : 'localhost', user : 'root', database : 'florida', password : 'root', port: process.env.PORT, debug : false,
+	host : config.server.host, user : config.database.user, database : config.database.name, password : config.database.password, port: process.env.PORT, debug : false,
 });
-
 connection.connect(function(err){
     if(!err){
         console.log("Connected to florida DB");

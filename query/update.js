@@ -1,9 +1,10 @@
 var mysql   = require('mysql');
 var stochator   = require('stochasm');
-
+var config = require('../config.js');
 var connection = mysql.createConnection({
-	host : 'localhost', user : 'root', database : 'florida', password : 'root', port: process.env.PORT, debug : false,
+	host : config.server.host, user : config.database.user, database : config.database.name, password : config.database.password, port: process.env.PORT, debug : false,
 });
+
 
 connection.connect(function(err){
     if(!err){
@@ -24,6 +25,9 @@ exports.Update_User_Password = function (id, oldPassword, newPassword, callback)
                         }
                     }
                 );
+            }
+            else if(result !== undefined && result.length == 0){
+                callback(false);
             }
         }
     );
@@ -84,6 +88,12 @@ exports.Update_User_LastName = function (id, newLastName, callback) {
         }
     );
     callback(undefined);
+};
+exports.updateBio = function(id, text, callback){
+    connection.query
+    (
+        "update users set bio = ? where id = ?", [id, text], function(done){}
+    );
 };
 exports.Update_User_email = function (id,newEmail, callback) {
 	connection.query

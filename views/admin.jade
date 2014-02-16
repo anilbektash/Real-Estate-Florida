@@ -91,7 +91,11 @@ html(lang='en' , style='overflow-y: scroll;')
                   br
                   input#emailfield.input-group(type='text',placeholder='',disabled='disabled')
                   br
-                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save(this)') Save Changes
+                  |Bio:
+                  br
+                  textarea#biofield(rows='4')
+                  br
+                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:fixed;',onclick='saveprofile()') Save Changes
           #newrecord
               h2.sub-header Add a new Estate
               #newestatediv(style='font-size:12pt;')
@@ -149,5 +153,5 @@ html(lang='en' , style='overflow-y: scroll;')
                   |Zip Code:
                   br
                   input#zipcodefield.input-group(type='text',placeholder='')
-                span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:relative;',onclick='save()') Save Changes
+                span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:fixed;',onclick='save()') Save Changes
 
