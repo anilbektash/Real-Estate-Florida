@@ -106,12 +106,13 @@
 	
 	function saveprofilesocket(name,surname,bio)
 	{
-		socket.emit('socket-settingschange' , {firstname : name , lastname : surname , bio: bio});
+		socket.emit('socket-settingschange' , { id:localStorage['id'] ,firstname : name , lastname : surname , bio: bio});
 	}
 
 	function passwordsocket(old,new1,new2)
 	{
-		socket.emit('socket-passwordchange' , {old : old , password: new1});
+		socket.emit('socket-passwordchange' , {id:localStorage['id'] , old : old , password: new1});
+		alert("OK!");
 	}
 
 
