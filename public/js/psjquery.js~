@@ -9,5 +9,6 @@
 	});
 	
 	socket.on('socket-getsingle',function(data){
-		alert(data.result.name);
+		alert("asd");
+		$("#adminname").html("asd");//data.name + " " + data.surname);
 	});
