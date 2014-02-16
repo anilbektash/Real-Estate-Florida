@@ -170,13 +170,6 @@ socket.sockets.on('connection', function (socket){
             }
         });
     });
-    //revoked in user settings page when a user changes his or her profile pic
-    socket.on('socket-profilepic', function(data){
-        if(data.image){
-            var directory = './public/users/' + data.id + '/profilepic.png';
-            fs.writeFile(directory, data.image.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
-        }
-    });
     //search amid the real estates in the databases with names, street, city etc parameters
     socket.on('socket-search', function(data){
         select.search(data.input, function(done){
@@ -185,6 +178,10 @@ socket.sockets.on('connection', function (socket){
             }
         });
     });
+    socket.on('socket-selectsingle', function(data)){
+        select.selectEstate(data.id, function(done){
+        });
+    }
     socket.on('socket-passwordchange', function(data){
         console.log("In pass change data: " + JSON.stringify(data));
         if(data.password && data.password.length > 0){
@@ -207,6 +204,12 @@ socket.sockets.on('connection', function (socket){
                     socket.emit("socket-alert", {data: "Name couldn't updated"});
                 }
             });
+        }
+        if(data.profilepic && data.profilepic.length > 0){
+            var saveDirectory = "./public/users/" + data.id + "/profilepic.png";
+            console.log("Image save dir: " + saveDirectory);
+            fs.writeFile(saveDirectory, data.profilepic.replace(/^data:image\/jpeg;base64,/,'').replace(/^data:image\/png;base64,/,'') , 'base64',function(err){});
+            console.log("Image saved to the file system successfully");
         }
         if(data.lastname && data.lastname.length > 0){
             counter++;
@@ -232,7 +235,6 @@ socket.sockets.on('connection', function (socket){
         if(counter == data.length){
             socket.emit('socket-alert', {data: "Settings changes successfully"});
         }
-        console.log("Count " + counter);
     });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-estateupdate', function(data){
