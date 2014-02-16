@@ -79,9 +79,9 @@
 
 	function changepassword()
 	{
-		var pass1 = document.getElementById('newpassword1');
-		var pass2 = document.getElementById('newpassword2');
-		var oldpass = document.getElementById('oldpassword');
+		var pass1 = document.getElementById('newpassword1').value;
+		var pass2 = document.getElementById('newpassword2').value;
+		var oldpass = document.getElementById('oldpassword').value;
 		if(pass1.value == pass2.value)
 		{
 			passwordsocket(oldpass,pass1,pass2);

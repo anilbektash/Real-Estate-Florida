@@ -112,7 +112,6 @@
 	function passwordsocket(old,new1,new2)
 	{
 		socket.emit('socket-passwordchange' , {id:localStorage['id'] , old : old , password: new1});
-		alert("OK!");
 	}
 
 
