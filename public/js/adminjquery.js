@@ -23,7 +23,10 @@
 			$("#newrecord").hide();
 		});
                 var str = "url(/users/" + localStorage['id'] + '/profilepic.png)';
-                $("#profilephoto").css('background-image',str);
+                $("#profilephoto").css('background-image',str );
+		$("#profilephoto").css('background-size' ,'cover');
+		$("#profilephoto").css('background-position' ,'center center');
+		$("#profilephoto").css('border-radius' ,'6px');
   	        $("#namefield").attr('placeholder',localStorage['isim']);
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
@@ -89,6 +92,11 @@
 	{
 		socket.emit('socket-delete' , {id : id});
 		$('#' + id).parent().hide('slow');
+	}
+	
+	function saveprofile(name,surname,bio)
+	{
+		socket.emit('socket-settingschange' , {firstname : name , lastname : surname , bio: bio});
 	}
 
 

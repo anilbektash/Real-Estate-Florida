@@ -23,7 +23,10 @@
 			$("#newrecord").hide();
 		});
                 var str = "url(/users/" + localStorage['id'] + '/profilepic.png)';
-                $("#profilephoto").css('background-image',str);
+                $("#profilephoto").css('background-image',str );
+		$("#profilephoto").css('background-size' ,'cover');
+		$("#profilephoto").css('background-position' ,'center center');
+		$("#profilephoto").css('border-radius' ,'6px');
   	        $("#namefield").attr('placeholder',localStorage['isim']);
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
       		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
@@ -42,7 +45,7 @@
 			addstr += "<td>" + data.result[i].street_name + "</td>";
 			addstr += "<td>" + data.result[i].city + "</td>";
 			addstr += "<td>" + data.result[i].price + "</td>";
-			addstr += '<td onclick="javascript:deleteobject(this)" id="asd"><a href="#"><span style="color:#f00">Delete</span></a></td>';
+			addstr += '<td onclick="javascript:deleteobject(this)" id="' + data.result[i].id + '"><a href="#"><span style="color:#f00">Delete</span></a></td>';
 			addstr += "</tr>";
 		}
 		$("#estatetable").append(addstr);
@@ -89,6 +92,11 @@
 	{
 		socket.emit('socket-delete' , {id : id});
 		$('#' + id).parent().hide('slow');
+	}
+	
+	function saveprofile(name,surname)
+	{
+		socket.emit('socket-settingschange' , {firstname : name , lastname : surname});
 	}
 
 
