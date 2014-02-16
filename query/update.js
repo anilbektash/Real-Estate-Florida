@@ -93,7 +93,7 @@ exports.Update_User_LastName = function (id, newLastName, callback) {
 exports.updateBio = function(id, text, callback){
     connection.query
     (
-        "update users set bio = ? where id = ?", [id, text], function(done){}
+        "update users set bio = ? where id = ?", [text, id], function(done){}
     );
 };
 exports.Update_User_email = function (id,newEmail, callback) {
