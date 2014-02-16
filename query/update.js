@@ -14,7 +14,7 @@ connection.connect(function(err){
 });
 exports.Update_User_Password = function (id, oldPassword, newPassword, callback) {
     connection.query(
-        "select 1 from user where id = ? and password = ?", [id, oldPassword], function(err, result, fields){
+        "select 1 from users where id = ? and password = ?", [id, oldPassword], function(err, result, fields){
             if(result !== undefined && result.length > 0){
                 connection.query(
                     "UPDATE users SET password = '"+newPassword+"' WHERE id = '"+id+"' ", function(error,results,fields)
