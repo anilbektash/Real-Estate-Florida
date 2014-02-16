@@ -1,0 +1,274 @@
+!!! strict
+html(xmlns='http://www.w3.org/1999/xhtml')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title Locality
+    link(rel='stylesheet', type='text/css', media='all', href='style.css')
+    link#customFont(rel='stylesheets/stylesheet', type='text/css', media='all', href='')
+    link(rel='shortcut icon', href='favicon.ico')
+  body
+    #header-wrapper
+      .header
+        a(href='index')
+          img.logo(src='images/logo1.png', alt='')
+        ul.social-nav
+          li.twitter
+            a(href='#')
+          li.facebook
+            a(href='#')
+          li.linkedin
+            a(href='#')
+          li.bloger
+            a(href='#')
+        .head-contact
+          h3 1-800-555-1234
+          p
+            a(href='mailto:info@companyname.com') info@companyname.com
+      //
+         Navigation 
+      .nav-wrapper.clearfix
+        .nav-container
+          ul.main-nav
+            li
+              a(href='index') Home
+            li.active
+              a(href='contact') Contact Us
+          .seach-wrapper
+            form#searchform(method='get', action='')
+              p
+                input#s.search-field(type='text', value='Search....', name='s')
+              p
+                input#searchsubmit.submit-search(type='submit', name='submit', value='')
+    #wrapper 
+      .container.clearfix
+        #banner-wrapper
+          .banner-container
+            a(href='#')
+              img(src='images/banner-image.jpg', alt='banner')
+          .title-container
+            h2.page-title Contact Us
+            p.sub-heading SubHeading will appear
+        //
+           SLIDER WRAPPER CLOSED 
+        #content
+          .breadcrumb-bar
+            p.breadcrumb-wrapper
+              a(href='index') Home
+              | ::
+              a.active(href='#') Contact Us
+            ul.bar-icons
+              li
+                a(href='#')
+                  img(src='images/icons/print-ico.png', alt='printer')
+              li
+                a(href='#')
+                  img(src='images/icons/mail-ico.png', alt='mail')
+              li
+                a(href='#')
+                  img(src='images/icons/phone-ico.png', alt='fax')
+          .address-block.clearfix
+            .contact-view
+              img(src='images/contac-pic.jpg', alt='contact view')
+              p
+                | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
+            .contact-detail
+              h3.title Company Name
+              ul.address-line
+                li
+                  strong Address:
+                  | Street Address nr 100, 4536534 Your Town, Australia
+                li
+                  strong Phone:
+                  | (212) 555 55 00
+                li
+                  strong Email:
+                  a(href='maitto:office@yourwebsite.com ') office@yourwebsite.com 
+                li
+                  strong Web:
+                  a(href='www.yourwebsite.com') www.yourwebsite.com
+              p
+                | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+          hr
+          h3.title Location Map
+          p.location-detail
+            | Cras id nibh neque, eu dignissim orci. Aenean at adipiscing urna. Suspendisse potenti. Suspendisse vitae tellus a neque commodo rutrum. Praesent ac neque vitae massa pharetra pellentesque.
+          .map-container.clearfix
+            #map_canvas(style='width: 634px; height: 350px; float: right; border: 1px solid #a3a3a3;')
+              iframe(width='634', height='350', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src='http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=hong+kong&aq=&sll=37.0625,-95.677068&sspn=39.371738,86.572266&ie=UTF8&hq=&hnear=Hong+Kong&t=m&ll=22.365803,114.134173&spn=0.003453,0.006791&z=17&output=embed')
+              br
+              small
+                a(href='http://maps.google.com/maps?f=q&source=embed&hl=en&geocode=&q=hong+kong&aq=&sll=37.0625,-95.677068&sspn=39.371738,86.572266&ie=UTF8&hq=&hnear=Hong+Kong&t=m&ll=22.365803,114.134173&spn=0.003453,0.006791&z=17', style='text-align: left; position: absolute; color: #333;') View Larger Map
+          hr
+          .contact-form-wrapper
+            h3.title Quick Query
+            form#contact-form(action='contact.php', method='post')
+              p
+                label(for='author') Name*
+                input#name.input-bar.required(type='text', name='name', value='')
+              p
+                label(for='email') Mail*
+                input#quick-email.input-bar.email.required(type='text', name='email', value='')
+              p
+                label(for='message') Message*
+                textarea#message.message-box.required(name='message', cols='50', rows='10')
+              p
+                input#quick-submit.submit-btn(name='submit', type='submit', value='Submit')
+                img#contact-loader(src='images/loader.gif', alt='Loading...')
+              p#message-sent
+                | Thanks for Your Message!
+                br
+                | We will get in touch with you shortly.
+        //
+           CONTENT CLOSED 
+        .sidebar
+          .side-widget
+            //
+               SEARCH OPTIONS 
+            .advancesearch-wrapper
+              .search-options
+                .advancesearch-head
+                  h3 Find you Home
+                form.advance-search-form(action='', method='get')
+                  .option-bar
+                    label.option-title Property
+                    select#select-type.search-select(name='select-type')
+                      option(value='Choice 1') --Select Type--
+                      option(value='Choice 2') type 1
+                      option(value='Choice 3') type 2
+                      option(value='Choice 4') type 3
+                  //
+                     end of #select1 
+                  .option-bar
+                    label.option-title Price
+                    select#select-prices.search-select(name='select-prices')
+                      option(value='Choice 1') --Select Price--
+                      option(value='Choice 2') Price 1
+                      option(value='Choice 3') Price 2
+                      option(value='Choice 4') Price 3
+                  //
+                     end of #select1 
+                  .option-bar
+                    label.option-title Region
+                    select#select-region.search-select(name='select-region')
+                      option(value='Choice 1') --Select Region--
+                      option(value='Choice 2') Region 1
+                      option(value='Choice 3') Region 2
+                      option(value='Choice 4') Region 3
+                  //
+                     end of #select2 
+                  .option-bar
+                    label.option-title Rooms
+                    select#select-location.search-select(name='select-location')
+                      option(value='Choice 1') --No of Rooms--
+                      option(value='Choice 2') location 1
+                      option(value='Choice 3') Location 2
+                      option(value='Choice 4') Location 3
+                  //
+                     end of #select3 
+                  #search-box
+                    label.option-title Keyword
+                    input#as(type='text', name='s', value='')
+                  .search-btn-wrapper
+                    input.advance-search-btn(type='submit', value='Search')
+            //
+               ADVANCE SEARCH WRAPPER CLOSED 
+          .side-widget
+            .agent-container.clearfix
+              .agent-pic-wrapper
+                a(href='#')
+                  img(src='images/avatar-image.png', alt='agent')
+              h4
+                a(href='#') JOHN DOE
+              p Maecenas ipsum metus, semsion hendrerit varius mattis,
+          .side-widget
+            .featured-property
+              h3.title Featured Property
+              .property-view
+                a(href='#')
+                  img(src='images/dream-home-view.jpg', alt='featured property')
+                .featured-price-tag
+                  small dream house
+                  h5.price $400000
+              h4
+                a(href='#') Sundown Estate
+              p.sub-title Heading text will be appears
+              p
+                | Aliquam erat volutpat. Duis blan augue ac orci lao reet eget con dimentum magna venenatis. Maecenas eget au...
+          .side-widget
+            h3.title Newsletter Signup
+            p Maecenas ipsum metus, sempehendrerit varius mattis,congue sit amet tellus. 
+            form.subs-form(action='', method='post')
+              p
+                input#subs-bar.input-subs(type='text', value='E-mail address')
+                input.subs-btn(type='submit', value='Sign Up')
+        //
+           SIDEBAR CLOSED 
+      //
+         CONTAINER CLOSED 
+    //
+       WRAPPER....................................................................................................... CLOSED 
+    .footer-wrapper.clearfix
+      .footer
+        .footer-col.footer-col1
+          h3.title About Us
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat nisi, cursus vel tincidunt vel, accumsanet enim. Aliquam nec auctor turpis.
+          p
+            | Ut imperdiet vestibulum diam, dapibus fermentum mi porttitor non. Integer ut urna erat, quis....
+        .footer-col
+          h3.title Twitter Updates
+          #twitter_update_list
+        .footer-col
+          h3.title Latest News
+          ul
+            li
+              p ohnny Depp on His Dalliance With Scientology and His Box-Office Bankability
+            li
+              p ohnny Depp on His Dalliance
+      .bottombar-wrapper
+        .bottom-bar
+          ul.footer-nav
+            li.active
+              a(href='index') Home
+            li
+              a(href='signin') Sign In
+            li
+              a(href='contact') Contact Us
+          a(href='#')
+            img.logo-footer(src='images/footer-logo.png', alt='Locality')
+      //
+         BOTOMBAR CLOSED 
+    //
+       FOOTER WRAPPER............................................................................................... CLOSED 
+    //
+       Remove it if you do not need jQuery 
+    script(type='text/javascript', src='js/jquery-1.7.1.min.js')
+    //
+       Remove it if you do not need jquery.easing : http://gsgd.co.uk/sandbox/jquery/easing/ 
+    script(type='text/javascript', src='js/jquery.easing.1.3.js')
+    //
+       jQuery selectbox for advance search 
+    script(type='text/javascript', src='js/jquery.selectbox-0.5.js')
+    //
+       jQuery cycle plugin for sliding 
+    script(type='text/javascript', src='js/jquery.cycle.all.js')
+    //
+       jQuery plugin for equal heights 
+    script(type='text/javascript', src='js/equalheights.js')
+    //
+       Accordion Sllider 
+    script(type='text/javascript', src='js/slider_accordion.js')
+    script(type='text/javascript', src='js/accordionImageMenu-0.4.js')
+    //
+       jQuery plugin for equal heights 
+    script(type='text/javascript', src='js/slider_thumbnail.js')
+    //
+       contact form scripts 
+    script(type='text/javascript', src='js/jquery.form.js')
+    script(type='text/javascript', src='js/jquery.validate.js')
+    script(type='text/javascript', src='js/jquery-twitterFetcher.js')
+    //
+       script file to add your own JavaScript 
+    script(type='text/javascript', src='js/script.js')
+

@@ -20,7 +20,10 @@
 	psurname = document.getElementById('surnamefield').value;
 	pbio = document.getElementById('biofield').value;
 	saveprofilesocket(pname,psurname,pbio);
+	alert("Saved successfully");
 	}
+
+	//socket-selectsingle id
 
 	var cnt = "Empty";
 	var cntprofilephoto = "";
@@ -43,7 +46,7 @@
 				fileReader.readAsDataURL(fileToLoad);
 			}
 		}
-	}
+	} 
 	function newphoto()
 	{
 		var filesSelected = document.getElementById('newprofilephoto').files;

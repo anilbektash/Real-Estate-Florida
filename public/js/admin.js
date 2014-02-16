@@ -22,6 +22,8 @@
 	saveprofilesocket(pname,psurname,pbio);
 	}
 
+	//socket-selectsingle id
+
 	var cnt = "Empty";
 	var cntprofilephoto = "";
 	function newestatephoto()

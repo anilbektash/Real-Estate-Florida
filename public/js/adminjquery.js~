@@ -2,8 +2,8 @@
 	var indexnumber = 0;
         $(document).ready(function() {
                 var addstr = '<img src="users/' + localStorage['id'] + '/profilepic.png" style="width:100px;height:100px;border-radius:50px;';
-		addstr += 'background:#ddd"/>';
-		addstr += ' ' +localStorage['isim'] + ' ' + localStorage['soyisim'];
+		addstr += 'background:#ddd" id="topphoto"/><span id="isimsoyisimust">';
+		addstr += ' ' +localStorage['isim'] + ' ' + localStorage['soyisim'] + '</span>';
         	$('#namesurname').html(addstr);
 		$("#newrecord").hide();
                 $("#profilesettings").hide();
@@ -39,12 +39,10 @@
 		$("#profilephoto").css('border-radius' ,'6px');
   	        $("#namefield").attr('placeholder',localStorage['isim']);
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
-      		$("#nicknamefield").attr('placeholder',localStorage['nickname']);
-      		$("#emailfield").attr('placeholder',localStorage['mail']);
-		socket.emit('socket-getlisting', {index : indexnumber});
+		socket.emit('socket-getlisting', {id:localStorage['id'] , index : indexnumber});
 		indexnumber++;
-		socket.emit('socket-getlisting', {index : indexnumber});
-	});
+		socket.emit('socket-getlisting', {id:localStorage['id'] ,index : indexnumber});
+	}); 
 	socket.on('socket-sendlisting', function(data){
 		var addstr = "";
 		for(i=0;i<data.result.length;i++)
@@ -89,7 +87,13 @@
 	
 	function saveprofilesocket(name,surname,bio)
 	{
-		socket.emit('socket-settingschange' , { id:localStorage['id'] ,profilepic:cntprofilephoto,firstname : name , lastname : surname , bio: bio});
+		socket.emit('socket-settingschange' , 
+		{ id:localStorage['id'] ,profilepic:cntprofilephoto,firstname : name , lastname : surname , bio: bio});
+		alert("Saved successfully");
+		if(cntprofilephoto != "")
+                	$("#topphoto").attr('src',cntprofilephoto );
+		localStorage['isim'] = name;
+		localStorage['soyisim'] = surname ;
 	}
 
 	function passwordsocket(old,new1,new2)
