@@ -72,7 +72,7 @@ head
             .agent-container.clearfix
               .agent-pic-wrapper
                 a(href='#')
-                  img#adminphoto(src='images/avatar-image.png', alt='agent' , style='background-size:cover;')
+                  img#adminphoto(src='images/avatar-image.png', alt='agent' , style='width:100%;height:auto;')
               h4
                 a(href='#') JOHN DOE
               p Maecenas ipsum metus, semsion hendrerit varius mattis,
