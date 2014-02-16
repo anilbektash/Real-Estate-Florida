@@ -53,7 +53,7 @@ html(lang='en' , style='overflow-y: scroll;')
               a(href='#') New Record
                 span.pull-right
                   i.glyphicon.glyphicon-plus(style='font-size: 1.5em;')
-            li
+            li#changepasswordbutton
               a(href='#') Change Password
             li#profilesettingsbutton
               a(href='#') Profile Settings
@@ -90,7 +90,8 @@ html(lang='en' , style='overflow-y: scroll;')
                   |Email(cannot change):
                   br
                   input#emailfield.input-group(type='text',placeholder='',disabled='disabled')
-                  |Comment:
+                  br
+                  |Bio:
                   br
                   textarea#biofield(rows='4')
                   br
@@ -153,4 +154,23 @@ html(lang='en' , style='overflow-y: scroll;')
                   br
                   input#zipcodefield.input-group(type='text',placeholder='')
                 span.btn.btn-primary.btn-large(type='button',style='float:right;right:20px;bottom:20px;position:fixed;',onclick='save()') Save Changes
+            #changepassworddiv
+              h2.sub-header Change Password
+                br
+                br
+                div(style='font-size:12pt;')
+                  |Old Password:
+                  br
+                  input#oldpassword.input-group(type='password')
+                  br
+                  |New Password:
+                  br
+                  input#newpassword1.input-group(type='password')
+                  br
+                  |New Password (Again):
+                  br
+                  input#newpassword2.input-group(type='password' , onkeyup='checkPass(); return false;')
+                  span#confirmMessage
+                  br
+                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:30px;bottom:50px;position:fixed;') Change Password
 

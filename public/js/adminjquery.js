@@ -7,20 +7,30 @@
         	$('#namesurname').html(addstr);
 		$("#newrecord").hide();
                 $("#profilesettings").hide();
+		$("#changepassworddiv").hide();
 		$("#overviewbutton").click(function(){
 			$("#newrecord").hide();
 			$("#profilesettings").hide();
+			$("#changepassworddiv").hide();
 	  		$("#overview").show();
 		});
 		$("#newrecordbutton").click(function(){
-	  		$("#newrecord").show();
 			$("#profilesettings").hide();
 	  		$("#overview").hide();
+			$("#changepassworddiv").hide();
+	  		$("#newrecord").show();
 		});
 		$("#profilesettingsbutton").click(function(){
-	  		$("#profilesettings").show();
-	  		$("#overview").hide();
+			$("#overview").hide();
 			$("#newrecord").hide();
+			$("#changepassworddiv").hide();
+	  		$("#profilesettings").show();
+		});
+		$("#changepasswordbutton").click(function(){
+			$("#overview").hide();
+			$("#newrecord").hide();
+	  		$("#profilesettings").hide();
+			$("#changepassworddiv").show();
 		});
                 var str = "url(/users/" + localStorage['id'] + '/profilepic.png)';
                 $("#profilephoto").css('background-image',str );
@@ -94,9 +104,14 @@
 		$('#' + id).parent().hide('slow');
 	}
 	
-	function saveprofile(name,surname,bio)
+	function saveprofilesocket(name,surname,bio)
 	{
 		socket.emit('socket-settingschange' , {firstname : name , lastname : surname , bio: bio});
+	}
+
+	function passwordsocket(old,new1,new2)
+	{
+		socket.emit('socket-passwordchange' , {old : old , password: new1});
 	}
 
 

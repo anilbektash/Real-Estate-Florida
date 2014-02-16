@@ -61,7 +61,7 @@
 	pname = document.getElementById('namefield').value;
 	psurname = document.getElementById('surnamefield').value;
 	pbio = document.getElementById('biofield').value;
-	saveprofile(pname,psurname,pbio);
+	saveprofilesocket(pname,psurname,pbio);
 	}
 
 	var cnt = "Empty";
@@ -102,6 +102,41 @@
 	{
 		deletejquery(e.getAttribute("id"));
 	}
+	function checkPass()
+	{
+		var pass1 = document.getElementById('newpassword1');
+		var pass2 = document.getElementById('newpassword2');
+		var message = document.getElementById('confirmMessage');
+		var goodColor = "#44dd44";
+		var badColor = "#ff6666";
+		if(pass1.value == pass2.value)
+		{
+			pass2.style.backgroundColor = goodColor;
+			message.style.color = goodColor;
+			message.innerHTML = "Passwords Match!"
+		}
+		else
+		{
+			pass2.style.backgroundColor = badColor;
+			message.style.color = badColor;
+			message.innerHTML = "Passwords Do Not Match!"
+		}
+	}
+
+	function changepassword()
+	{
+		var pass1 = document.getElementById('newpassword1');
+		var pass2 = document.getElementById('newpassword2');
+		var oldpass = document.getElementById('oldpassword');
+		if(pass1.value == pass2.value)
+		{
+			passwordsocket(oldpass,pass1,pass2);
+		}
+		else
+		{
+			alert("Password don't match.");
+		}
+	}  
 
 
 
