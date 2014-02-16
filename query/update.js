@@ -11,13 +11,19 @@ connection.connect(function(err){
     }
     console.log(err);
 });
-exports.Update_User_Password = function (id, newPassword, callback) {
+exports.Update_User_Password = function (id, oldPassword, newPassword, callback) {
     connection.query(
-        "UPDATE users SET password = '"+newPassword+"' WHERE id = '"+id+"' ", function(error,results,fields)
-        {
-            if(error){
-                console.log(error);
-                console.log("could not update password"+"\r\n");
+        "select 1 from user where id = ? and password = ?", [id, oldPassword], function(err, result, fields){
+            if(result !== undefined && result.length > 0){
+                connection.query(
+                    "UPDATE users SET password = '"+newPassword+"' WHERE id = '"+id+"' ", function(error,results,fields)
+                    {
+                        if(error){
+                            console.log(error);
+                            console.log("could not update password"+"\r\n");
+                        }
+                    }
+                );
             }
         }
     );

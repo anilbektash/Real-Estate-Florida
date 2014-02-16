@@ -24,7 +24,7 @@
       if (fileToLoad.type.match("image.*"))
       {
       var fileReader = new FileReader();
-      fileReader.onload = function(fileLoadedEvent) 
+      fileReader.onload = function(fileLoadedEvent)
       {
       var div = document.getElementById('newestatephoto');
       div.style.backgroundImage = "url(" + fileLoadedEvent.target.result + ")";
@@ -35,15 +35,14 @@
       }
       }
       }
-	
-      $(window).scroll(function() {	
-		if($(window).scrollTop() + $(window).height() == $(document).height()) 
+
+      $(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() == $(document).height())
 		{
-		       	indexnumber++;
 		       	socket.emit('socket-getlisting', {index : indexnumber});
 		}
       });
-      	
+
 	function deleteobject(e)
 	{
 		deletejquery(e.getAttribute("id"));
