@@ -41,7 +41,7 @@
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
 		socket.emit('socket-getlisting', {id:localStorage['id'] , index : indexnumber});
 		indexnumber++;
-		socket.emit('socket-getlisting', {id:localStorage['id'] ,index : indexnumber});
+		socket.emit('socket-getlisting', {id:localStorage['id'] , index : indexnumber});
 	}); 
 	socket.on('socket-sendlisting', function(data){
 		var addstr = "";

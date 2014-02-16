@@ -39,9 +39,9 @@
 		$("#profilephoto").css('border-radius' ,'6px');
   	        $("#namefield").attr('placeholder',localStorage['isim']);
       		$("#surnamefield").attr('placeholder',localStorage['soyisim']);
-		socket.emit('socket-getlisting', {id:localStorage['id'] , index : indexnumber});
+		socket.emit('socket-getlisting', { id : localStorage['id'] , index : indexnumber});
 		indexnumber++;
-		socket.emit('socket-getlisting', {id:localStorage['id'] , index : indexnumber});
+		socket.emit('socket-getlisting', { id : localStorage['id'] , index : indexnumber});
 	}); 
 	socket.on('socket-sendlisting', function(data){
 		var addstr = "";
