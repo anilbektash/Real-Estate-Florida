@@ -23,25 +23,46 @@
 	}
 
 	var cnt = "Empty";
-	function newestatephoto(e)
+	var cntprofilephoto = "";
+	function newestatephoto()
 	{
-	var filesSelected = document.getElementById('estatephoto').files;
-	if (filesSelected.length > 0)
-	{
-	var fileToLoad = filesSelected[0];
-	if (fileToLoad.type.match("image.*"))
-	{
-	var fileReader = new FileReader();
-	fileReader.onload = function(fileLoadedEvent)
-	{
-	var div = document.getElementById('newestatephoto');
-	div.style.backgroundImage = "url(" + fileLoadedEvent.target.result + ")";
-	div.style.backgroundSize = "cover";
-	cnt = fileLoadedEvent.target.result;
-	};
-	fileReader.readAsDataURL(fileToLoad);
+		var filesSelected = document.getElementById('estatephoto').files;
+		if (filesSelected.length > 0)
+		{
+			var fileToLoad = filesSelected[0];
+			if (fileToLoad.type.match("image.*"))
+			{
+				var fileReader = new FileReader();
+				fileReader.onload = function(fileLoadedEvent)
+				{
+				var div = document.getElementById('newestatephoto');
+				div.style.backgroundImage = "url(" + fileLoadedEvent.target.result + ")";
+				div.style.backgroundSize = "cover";
+				cnt = fileLoadedEvent.target.result;
+				};
+				fileReader.readAsDataURL(fileToLoad);
+			}
+		}
 	}
-	}
+	function newphoto()
+	{
+		var filesSelected = document.getElementById('newprofilephoto').files;
+		if (filesSelected.length > 0)
+		{
+			var fileToLoad = filesSelected[0];
+			if (fileToLoad.type.match("image.*"))
+			{
+				var fileReader = new FileReader();
+				fileReader.onload = function(fileLoadedEvent)
+				{
+				var div = document.getElementById('profilephoto');
+				div.style.backgroundImage = "url(" + fileLoadedEvent.target.result + ")";
+				div.style.backgroundSize = "cover";
+				cntprofilephoto = fileLoadedEvent.target.result;
+				};
+				fileReader.readAsDataURL(fileToLoad);
+			}
+		}
 	}
 
 	$(window).scroll(function() {

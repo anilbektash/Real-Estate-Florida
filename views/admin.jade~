@@ -76,8 +76,7 @@ html(lang='en' , style='overflow-y: scroll;')
               #settingsdiv(style='font-size:12pt;')
                 #profilephotodiv(style='width:20%;height:90%;overload:hide;float:left;border-radius:10px;')
                   #profilephoto(style='width:100%;height:200px;display:inline-block;background-position: center center;background-size: cover;background:#ddd;')
-                  input#inputFileToLoad(type='file', name='...' , id='newprofilephoto')
-                  span.btn.btn-default.btn-file(onClick="javascript:newphoto(this)") Change Photo
+                  input#newprofilephoto(type='file' , onchange='javascript:newphoto()')
                 #othersettingsdiv(style='width:75%;height:90%;float:right;border-radius:10px;padding:5px;')
                   |Name:
                   br
@@ -101,7 +100,7 @@ html(lang='en' , style='overflow-y: scroll;')
               #newestatediv(style='font-size:12pt;')
                 #newestatephotodiv(style='width:20%;height:90%;overload:hide;float:left;border-radius:10px;')
                   #newestatephoto(style='width:100%;height:200px;display:inline-block;background-position: center center; background-size:cover;background:#ddd;')
-                  input#estatephoto(type='file')
+                  input#estatephoto(type='file' , onchange='javascript:newestatephoto()')
                   span.btn.btn-default.btn-file(onClick="javascript:newestatephoto(this)") Change Photo
                 #estatedata(style='width:35%;margin-left:10px;float:left;border-radius:10px;padding:5px;')
                   |Comment:
@@ -172,5 +171,5 @@ html(lang='en' , style='overflow-y: scroll;')
                   input#newpassword2.input-group(type='password' , onkeyup='checkPass(); return false;')
                   span#confirmMessage
                   br
-                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:30px;bottom:50px;position:fixed;') Change Password
+                  span.btn.btn-primary.btn-large(type='button',style='float:right;right:30px;bottom:50px;position:fixed;',onclick='changepassword()') Change Password
 

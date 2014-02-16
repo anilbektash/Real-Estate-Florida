@@ -63,38 +63,21 @@
 
 	function socketgonder(comment,title,price,area,bed,bath,streetn,apartmentn,street,city,state,zipcode)
 	{
-		if(cnt == "Empty")
-			socket.emit('socket-insertestate', {
-			userID : localStorage['id'],
-			image : "" ,
-			text : comment,
-	 		name : title,
-			price : price,
-			area : area,
-			bed : bed,
-			bath : bath,
-			streetNum : streetn,
-			apartmentNum : apartmentn,
-			streetName : street,
-			city : city,
-			state : state,
-			zipcode : zipcode});
-		else
-			socket.emit('socket-insertestate', {
-			userID : localStorage['id'],
-			image : cnt ,
-			text : comment,
-	 		name : title,
-			price : price,
-			area : area,
-			bed : bed,
-			bath : bath,
-			streetNum : streetn,
-			apartmentNum : apartmentn,
-			streetName : street,
-			city : city,
-			state : state,
-			zipcode : zipcode});
+		socket.emit('socket-insertestate', {
+		userID : localStorage['id'],
+		image : cnt ,
+		text : comment,
+ 		name : title,
+		price : price,
+		area : area,
+		bed : bed,
+		bath : bath,
+		streetNum : streetn,
+		apartmentNum : apartmentn,
+		streetName : street,
+		city : city,
+		state : state,
+		zipcode : zipcode});
 		alert("Saved successfuly.")
 	}
 	
@@ -106,12 +89,12 @@
 	
 	function saveprofilesocket(name,surname,bio)
 	{
-		socket.emit('socket-settingschange' , { id:localStorage['id'] ,firstname : name , lastname : surname , bio: bio});
+		socket.emit('socket-settingschange' , { id:localStorage['id'] ,profilepic:cntprofilephoto,firstname : name , lastname : surname , bio: bio});
 	}
 
 	function passwordsocket(old,new1,new2)
 	{
-		socket.emit('socket-passwordchange' , {id:localStorage['id'] , old : old , password: new1});
+		socket.emit('socket-passwordchange' , { id:localStorage['id'] , old : old , password: new1});
 	}
 
 
