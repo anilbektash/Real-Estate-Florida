@@ -133,7 +133,7 @@ socket.sockets.on('connection', function (socket){
     });
     //lists estates 10 of them, according to index*10 as starting index
     socket.on('socket-getlisting', function(data){
-        select.select10Estate(data.index, function callback(results){
+        select.select10Estate(data.index, data.userID, function callback(results){
             if(results !== undefined){
                 socket.emit("socket-sendlisting", {result:results});
             }
@@ -179,7 +179,10 @@ socket.sockets.on('connection', function (socket){
         });
     });
     socket.on('socket-selectsingle', function(data){
-        select.selectEstate(data.id, function(done){
+        select.selectEstate(data.id, data.userID, function(res){
+            if(res !== undefined){
+                socket.emit("socket-getsingle", {result : res});
+            }
         });
     });
     socket.on('socket-passwordchange', function(data){
