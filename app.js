@@ -178,10 +178,10 @@ socket.sockets.on('connection', function (socket){
             }
         });
     });
-    socket.on('socket-selectsingle', function(data)){
+    socket.on('socket-selectsingle', function(data){
         select.selectEstate(data.id, function(done){
         });
-    }
+    });
     socket.on('socket-passwordchange', function(data){
         console.log("In pass change data: " + JSON.stringify(data));
         if(data.password && data.password.length > 0){
