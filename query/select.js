@@ -15,7 +15,7 @@ connection.connect(function(err){
 //selects 10 estates starting from index*10 for listing purpose
 exports.select10Estate = function(index, userID, callback){
     connection.query(
-        "select estate.id, name, area, street_name, city, price from estate inner join location on location.id = estate.id and estate.userID = ? order by date desc, cur_time desc limit ?, ?", [userID,index*10, (index + 1)*10], function(err, res, fields){
+        "select estate.id, name, area, street_name, city, price from estate inner join location on location.id = estate.id and estate.userID = ? order by date desc, cur_time desc limit ?, ?", [userID, index*10, (index + 1)*10], function(err, res, fields){
             if(res !== undefined){
                 console.log("In get listing... with index " + index);
                 console.log(JSON.stringify(res));
@@ -27,9 +27,8 @@ exports.select10Estate = function(index, userID, callback){
 };
 exports.selectEstate = function(id, userID, callback){
     connection.query(
-        "select * from estate, location, text, users where estate.id = ? and estate.userID = ? and users.id = ?", [id, userID, userID], function(err, res, fields){
+        "select * from estate inner join location on location.id = estate.id inner join text on text.id = estate.id inner join users on users.id = ? where estate.id = ?", [userID, id], function(err, res, fields){
             if(res !== undefined){
-                console.log(JSON.stringify(res));
                 callback(res);
             }
         }
