@@ -1,4 +1,4 @@
-        var socket = io.connect('http://localhost');
+    var socket = io.connect('http://localhost');
 	var indexnumber = 0;
         $(document).ready(function() {
                 var addstr = '<img src="users/' + localStorage['id'] + '/profilepic.png" style="width:100px;height:100px;border-radius:50px;';
@@ -97,13 +97,13 @@
 			zipcode : zipcode});
 		alert("Saved successfuly.")
 	}
-	
+
 	function deletejquery(id)
 	{
 		socket.emit('socket-delete' , {id : id});
 		$('#' + id).parent().hide('slow');
 	}
-	
+
 	function saveprofilesocket(name,surname,bio)
 	{
 		socket.emit('socket-settingschange' , {firstname : name , lastname : surname , bio: bio});
@@ -112,10 +112,11 @@
 	function passwordsocket(old,new1,new2)
 	{
 		socket.emit('socket-passwordchange' , {old : old , password: new1});
+        alert("OK 200");
 	}
 
 
 
 
 
-        
+

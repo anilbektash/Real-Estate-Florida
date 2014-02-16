@@ -34,7 +34,7 @@ exports.Update_User_Password = function (id, oldPassword, newPassword, callback)
     callback(undefined);
 };
 
-exports.Update_User_FirstName = function (id,newFirstName, callback) {
+exports.Update_User_FirstName = function (id, newFirstName, callback) {
 	connection.query
 	(
 		"SELECT 1 from users WHERE id = '"+id+"' ",function (error, results, fields)
@@ -50,9 +50,10 @@ exports.Update_User_FirstName = function (id,newFirstName, callback) {
 						console.log(error);
 						console.log("could not update first name"+"\r\n");
 						}
+                    console.log("CHANGED");
+                    callback(true);
 					}
 				);
-                callback(true);
             }
             else{
                 callback(false);
