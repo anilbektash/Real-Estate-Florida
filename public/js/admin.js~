@@ -23,7 +23,7 @@
 	}
 
 	var cnt = "Empty";
-	var cntprofilephoto = "Empty";
+	var cntprofilephoto = "";
 	function newestatephoto()
 	{
 		var filesSelected = document.getElementById('estatephoto').files;

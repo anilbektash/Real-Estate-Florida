@@ -44,7 +44,7 @@
 		socket.emit('socket-getlisting', {index : indexnumber});
 		indexnumber++;
 		socket.emit('socket-getlisting', {index : indexnumber});
-	});
+	}); 
 	socket.on('socket-sendlisting', function(data){
 		var addstr = "";
 		for(i=0;i<data.result.length;i++)

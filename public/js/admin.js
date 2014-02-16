@@ -43,7 +43,7 @@
 				fileReader.readAsDataURL(fileToLoad);
 			}
 		}
-	}
+	} 
 	function newphoto()
 	{
 		var filesSelected = document.getElementById('newprofilephoto').files;
