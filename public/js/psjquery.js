@@ -9,6 +9,6 @@
 	});
 	
 	socket.on('socket-getsingle',function(data){
-		$("#adminname").html(data.name + " " + data.surname);
-		$("#adminbio").html(data.bio);
+		$("#adminname").html(data.result.name + " " + data.result.surname);
+		$("#adminbio").html(data.result.bio);
 	});

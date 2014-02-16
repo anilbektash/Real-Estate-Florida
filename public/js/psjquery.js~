@@ -10,4 +10,5 @@
 	
 	socket.on('socket-getsingle',function(data){
 		$("#adminname").html(data.name + " " + data.surname);
+		$("#adminbio").html(data.bio);
 	});
