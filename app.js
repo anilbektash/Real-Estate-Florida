@@ -186,6 +186,7 @@ socket.sockets.on('connection', function (socket){
         });
     });
     socket.on('socket-passwordchange', function(data){
+        console.log("In pass change data: " + JSON.stringify(data));
         if(data.password && data.password.length > 0){
             update.Update_User_Password(data.id, data.old, data.password, function(done){
                 if(done===false) {
@@ -196,6 +197,7 @@ socket.sockets.on('connection', function (socket){
     });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-settingschange', function(data){
+        console.log("In settings change data: ");
         console.log("In settings change data: " + JSON.stringify(data));
         var counter = 0;
         if(data.firstname && data.firstname.length > 0){
@@ -230,6 +232,7 @@ socket.sockets.on('connection', function (socket){
         if(counter == data.length){
             socket.emit('socket-alert', {data: "Settings changes successfully"});
         }
+        console.log("Count " + counter);
     });
     //revoked in user settings page when a user changes his or her profile settings
     socket.on('socket-estateupdate', function(data){
